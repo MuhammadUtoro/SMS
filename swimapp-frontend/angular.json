@@ -6,8 +6,8 @@
     "swimapp-frontend": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
+        "@schematics/angular:service": {
+          "type": "service"
         }
       },
       "root": "",
@@ -94,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "67d3cc31-1f4e-4389-aee1-3cd701f09188"
   }
 }

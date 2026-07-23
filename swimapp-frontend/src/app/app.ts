@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import Keycloak from 'keycloak-js';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,21 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss'
 })
 export class App {
-  protected title = 'swimapp-frontend';
+  private keycloak = inject(Keycloak);
+
+  login() {
+    this.keycloak.login();
+  }
+
+  logout() {
+    this.keycloak.logout();
+  }
+
+  profile() {
+    console.log(this.keycloak.profile);
+  }
+
+  token() {
+    console.log(this.keycloak.token);
+  }
 }
