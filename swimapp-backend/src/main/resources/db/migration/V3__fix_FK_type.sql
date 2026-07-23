@@ -1,0 +1,20 @@
+ALTER TABLE courses
+ALTER COLUMN trainer_id TYPE BIGINT;
+
+ALTER TABLE courses
+ALTER COLUMN level_id TYPE BIGINT;
+
+ALTER TABLE courses
+ALTER COLUMN course_time TYPE TIME;
+
+ALTER TABLE level_requirements
+ALTER COLUMN level_id TYPE BIGINT;
+
+ALTER TABLE swimmers
+ALTER COLUMN parent_id TYPE BIGINT;
+
+ALTER TABLE swimmers
+ALTER COLUMN course_id TYPE BIGINT;
+
+ALTER TABLE swimmers
+ALTER COLUMN level_id TYPE BIGINT;
