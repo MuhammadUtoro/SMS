@@ -9,7 +9,7 @@ import { routes } from './app.routes';
 // request header. Library (angular-js) doesn't automatically add the Bearer
 // token to request, therefore we need to configure und use interceptors
 const urlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
-  urlPattern: /^(http:\/\/localhost:4200)(\/.*)?$/i,
+  urlPattern: /^(http:\/\/localhost:8080)(\/.*)?$/i,
   bearerPrefix: 'Bearer'
 })
 
@@ -18,6 +18,11 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideHttpClient(
+      withInterceptors([
+        includeBearerTokenInterceptor
+      ])
+    ),
     AutoRefreshTokenService,
     UserActivityService,
     provideKeycloak({

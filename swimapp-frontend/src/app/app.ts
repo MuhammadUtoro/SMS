@@ -1,16 +1,29 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import Keycloak from 'keycloak-js';
+import { HttpClient } from '@angular/common/http';
 import { KeycloakTokenParsed } from './interfaces/keycloak/keycloak-token-parsed';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
+  private http = inject(HttpClient);
   private keycloak = inject(Keycloak);
+
+  callBackend() {
+    this.http.get('http://localhost:8080/api/me').subscribe({
+      next: (response) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+  }
 
   // Triggers keycloak login
   login() {
@@ -21,7 +34,7 @@ export class App {
   logout() {
     this.keycloak.logout();
   }
-  
+
   // Look at the user's profile
   profile() {
     console.log(this.keycloak.profile);
@@ -30,11 +43,10 @@ export class App {
   token() {
     console.log(this.keycloak.token);
   }
-  
+
   // Get the username - if authenticated
   getUsername(): string {
     console.log(this.keycloak.tokenParsed?.['preferred_username']);
     return this.keycloak.tokenParsed?.['preferred_username'] || '';
   }
-
 }
