@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+  <mat-form-field>
+    <mat-label>email</mat-label>
+    <input
+      matInput
+      placeholder="example@mail.com"
+      formControlName="email"
+      [formGroup]="form"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>firstName</mat-label>
+    <input matInput formControlName="firstName" [formGroup]="form" required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>lastName</mat-label>
+    <input matInput formControlName="lastName" [formGroup]="form" required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>username</mat-label>
+    <input matInput formControlName="username" [formGroup]="form" required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>password</mat-label>
+    <input matInput type="password" formControlName="password" [formGroup]="form" required />
+  </mat-form-field>
+
+  <button matButton="tonal" (click)="registerParent()">Register</button>
+</form>
