@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import dto.parent.ParentRegistrationRequestDTO;
 import dto.parent.ParentSummaryDTO;
 import dto.parent.UpdateParentInfoDTO;
 import entity.Parent;
@@ -20,6 +21,12 @@ public class ParentService {
     @Inject
     ParentRepository parentRepository;
 
+    // Register User - Parent
+    public String registerParent(ParentRegistrationRequestDTO dto) {
+        return "Registered!";
+    }
+
+    
     // Retrieve all parents - GET
     public List<ParentSummaryDTO> getParentsList(int page, int size) {
         List<Parent> parents = parentRepository.getParentsList(page, size);
