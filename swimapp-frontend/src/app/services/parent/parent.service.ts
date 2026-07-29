@@ -9,6 +9,14 @@ export interface ParentRegistrationRequestDTO {
   password: string;
 }
 
+export interface ParentRegistrationResponseDTO {
+  email: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  roles: string[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +25,8 @@ export class ParentService {
   private http: HttpClient = inject(HttpClient);
 
   registerParent(dto: ParentRegistrationRequestDTO) {
-    return this.http.post(this.registerUrl, dto);
+    return this.http.post<ParentRegistrationResponseDTO>(
+      this.registerUrl, dto
+    );
   }
 }
