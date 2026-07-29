@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.UUID;
 
 import dto.parent.ParentRegistrationRequestDTO;
 import dto.parent.ParentRegistrationResponseDTO;
@@ -17,6 +18,9 @@ import repository.ParentRepository;
 public class ParentService {
 
     @Inject
+    KeycloakAdminService keycloakAdminService;
+    
+    @Inject
     ParentMapper parentMapper;
 
     @Inject
@@ -24,11 +28,13 @@ public class ParentService {
 
     // Register User - Parent
     public ParentRegistrationResponseDTO registerParent(ParentRegistrationRequestDTO dto) {
+        UUID keycloakUserId = keycloakAdminService.createUser(dto);
         ParentRegistrationResponseDTO responseDTO = new ParentRegistrationResponseDTO(
                 dto.email(),
                 dto.firstName(),
                 dto.lastName(),
                 dto.username(),
+                keycloakUserId,
                 List.of("PARENT"));
         return responseDTO;
     }

@@ -14,6 +14,7 @@ export interface ParentRegistrationResponseDTO {
   firstName: string;
   lastName: string;
   username: string;
+  keycloakUserId: string;
   roles: string[];
 }
 

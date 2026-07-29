@@ -1,5 +1,7 @@
 package dto.parent;
 
+import java.util.UUID;
+
 import java.util.List;
 
 public record ParentRegistrationResponseDTO(
@@ -7,5 +9,6 @@ public record ParentRegistrationResponseDTO(
                 String firstName,
                 String lastName,
                 String username,
+                UUID keycloakUserId,
                 List<String> roles) {
 }
