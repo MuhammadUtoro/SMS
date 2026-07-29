@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import dto.parent.ParentRegistrationRequestDTO;
+import dto.parent.ParentRegistrationResponseDTO;
 import dto.parent.ParentSummaryDTO;
 import dto.parent.UpdateParentInfoDTO;
 import entity.Parent;
@@ -14,7 +15,7 @@ import repository.ParentRepository;
 
 @ApplicationScoped
 public class ParentService {
-    
+
     @Inject
     ParentMapper parentMapper;
 
@@ -22,17 +23,21 @@ public class ParentService {
     ParentRepository parentRepository;
 
     // Register User - Parent
-    public String registerParent(ParentRegistrationRequestDTO dto) {
-        return "Registered!";
+    public ParentRegistrationResponseDTO registerParent(ParentRegistrationRequestDTO dto) {
+        ParentRegistrationResponseDTO responseDTO = new ParentRegistrationResponseDTO(
+                dto.email(),
+                dto.firstName(),
+                dto.lastName(),
+                dto.username(),
+                List.of("PARENT"));
+        return responseDTO;
     }
 
-    
     // Retrieve all parents - GET
     public List<ParentSummaryDTO> getParentsList(int page, int size) {
         List<Parent> parents = parentRepository.getParentsList(page, size);
         return parents.stream().map(
-                parentMapper::toSummaryDTO
-                ).toList();
+                parentMapper::toSummaryDTO).toList();
     }
 
     // Retrieve Parent by ID

@@ -1,12 +1,11 @@
 package dto.parent;
 
-public record ParentRegistrationRequestDTO(
+import java.util.List;
+
+public record ParentRegistrationResponseDTO(
                 String email,
                 String firstName,
                 String lastName,
                 String username,
-                String password
-                ) {
-
-
+                List<String> roles) {
 }
