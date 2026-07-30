@@ -1,22 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-export interface ParentRegistrationRequestDTO {
-  email: string;
-  firstName: string;
-  lastName: string;
-  username: string;
-  password: string;
-}
-
-export interface ParentRegistrationResponseDTO {
-  email: string;
-  firstName: string;
-  lastName: string;
-  username: string;
-  keycloakUserId: string;
-  roles: string[];
-}
+import { ParentRegistrationRequestDTO } from '../../interfaces/parent-registration-request-dto';
+import { ParentRegistrationResponseDTO } from '../../interfaces/parent-registration-response-dto';
 
 @Injectable({
   providedIn: 'root',
