@@ -40,11 +40,11 @@ public class CourseService {
     public CreateCourseResponseDTO createCourse(CreateCourseDTO dto) {
         Course course = courseMapper.toCreateEntity(dto);
         // Add level_id
-        Level level = levelRepository.findLevelById(dto.level_id());
+        Level level = levelRepository.findLevelById(dto.levelId());
         // Set level to course
         course.setLevel(level);
         // Add trainer_id
-        Trainer trainer = trainerRepository.findTrainerById(dto.trainer_id());
+        Trainer trainer = trainerRepository.findTrainerById(dto.trainerId());
         // set trainer to course
         course.setTrainer(trainer);
         // Persist
@@ -60,20 +60,20 @@ public class CourseService {
     }
 
     // Retrieve course by ID - GET
-    public CourseSummaryDTO getCourseById(Long course_id) {
-        Course course = courseRepository.findCourseById(course_id);
+    public CourseSummaryDTO getCourseById(Long courseId) {
+        Course course = courseRepository.findCourseById(courseId);
         if (course == null) {
-            throw new NotFoundException("Course with ID: " + course_id + " is not found!");
+            throw new NotFoundException("Course with ID: " + courseId + " is not found!");
         }
         return courseMapper.toSummaryDTO(course);
     }
 
     // UpdateCourseInfoDTO - PUT
     @Transactional
-    public CourseSummaryDTO updateCourseInfoEntity(Long course_id, UpdateCourseInfoDTO dto) {
-        Course course = courseRepository.findCourseById(course_id);
+    public CourseSummaryDTO updateCourseInfoEntity(Long courseId, UpdateCourseInfoDTO dto) {
+        Course course = courseRepository.findCourseById(courseId);
         if (course == null) {
-            throw new NotFoundException("Course with ID: " + course_id + " is not found!");
+            throw new NotFoundException("Course with ID: " + courseId + " is not found!");
         }
         courseMapper.updateCourseInfoEntity(course, dto);
         return courseMapper.toSummaryDTO(course);
@@ -81,14 +81,14 @@ public class CourseService {
 
     // UpdateCourseLevelDTO - PATCH
     @Transactional
-    public CourseSummaryDTO updateCourseLevel(Long course_id, UpdateCourseLevelDTO dto) {
-        Course course = courseRepository.findCourseById(course_id);
+    public CourseSummaryDTO updateCourseLevel(Long courseId, UpdateCourseLevelDTO dto) {
+        Course course = courseRepository.findCourseById(courseId);
         if (course == null) {
             throw new NotFoundException("Course not found!");
         }
 
         // Fetch level
-        Level level = levelRepository.findLevelById(dto.level_id());
+        Level level = levelRepository.findLevelById(dto.levelId());
         if (level == null) {
             throw new NotFoundException("Level not found!");
         }
@@ -98,14 +98,14 @@ public class CourseService {
 
     // UpdateCourseTrainerDTO - PATCH
     @Transactional
-    public CourseSummaryDTO updateCourseTrainer(Long course_id, UpdateCourseTrainerDTO dto) {
-        Course course = courseRepository.findCourseById(course_id);
+    public CourseSummaryDTO updateCourseTrainer(Long courseId, UpdateCourseTrainerDTO dto) {
+        Course course = courseRepository.findCourseById(courseId);
         if (course == null) {
             throw new NotFoundException("Course not found!");
         }
 
         // Fetch trainer
-        Trainer trainer = trainerRepository.findTrainerById(dto.trainer_id());
+        Trainer trainer = trainerRepository.findTrainerById(dto.trainerId());
         if (trainer == null) {
             throw new NotFoundException("Trainer not found!");
         }
@@ -116,8 +116,8 @@ public class CourseService {
 
     // Delete Course
     @Transactional
-    public void deleteCourse(Long course_id) {
-        boolean deleted = courseRepository.deleteCourse(course_id);
+    public void deleteCourse(Long courseId) {
+        boolean deleted = courseRepository.deleteCourse(courseId);
         if (!deleted) {
             throw new NotFoundException("Course not found!");
         }

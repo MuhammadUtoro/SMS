@@ -18,8 +18,8 @@ public class SwimmerMapper {
   // RequestDTO
   public Swimmer toCreateEntity(CreateSwimmerDTO swimmerDTO) {
     Swimmer swimmer = new Swimmer();
-    swimmer.setFirstName(swimmerDTO.first_name());
-    swimmer.setLastName(swimmerDTO.last_name());
+    swimmer.setFirstName(swimmerDTO.firstName());
+    swimmer.setLastName(swimmerDTO.lastName());
     return swimmer;
   }
 
@@ -30,7 +30,9 @@ public class SwimmerMapper {
       return null;
     }
     return new CreateSwimmerResponseDTO(
-        swimmer.getSwimmerId()
+        swimmer.getSwimmerId(),
+        swimmer.getFirstName(),
+        swimmer.getLastName()
         );
   }
 
@@ -71,8 +73,8 @@ public class SwimmerMapper {
   // detail
   // RequestDTO
   public void updateSwimmerInfoEntity(Swimmer swimmer, UpdateSwimmerInfoDTO dto) {
-    swimmer.setFirstName(dto.first_name());
-    swimmer.setLastName(dto.last_name());
+    swimmer.setFirstName(dto.firstName());
+    swimmer.setLastName(dto.lastName());
   }
 
 }

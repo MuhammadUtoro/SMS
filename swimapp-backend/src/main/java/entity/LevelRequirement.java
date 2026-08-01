@@ -16,7 +16,7 @@ public class LevelRequirement {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="level_requirement_id")
-  private Long level_requirement_id;
+  private Long levelRequirementId;
 
   @Column(name="requirements")
   private String requirement;
@@ -33,11 +33,11 @@ public class LevelRequirement {
 
   // Getter and setter
   public Long getLevelRequirementId() {
-    return level_requirement_id;
+    return levelRequirementId;
   }
 
-  public void setLevelRequirementId(Long level_requirement_id) {
-    this.level_requirement_id = level_requirement_id;
+  public void setLevelRequirementId(Long levelRequirementId) {
+    this.levelRequirementId = levelRequirementId;
   }
 
   public String getRequirement() {

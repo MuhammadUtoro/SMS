@@ -3,10 +3,10 @@ package dto.course;
 import java.time.LocalTime;
 
 public record CreateCourseDTO(
-                Long level_id,
-                Long trainer_id,
-                String course_name,
-                String course_day,
-                LocalTime course_time) {
+                Long levelId,
+                Long trainerId,
+                String courseName,
+                String courseDay,
+                LocalTime courseTime) {
 
 }

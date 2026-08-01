@@ -1,7 +1,9 @@
 package dto.swimmer;
 
 public record CreateSwimmerResponseDTO(
-                Long swimmer_id
+                Long swimmerId,
+                String firstName,
+                String lastName
                 ) {
 
 }

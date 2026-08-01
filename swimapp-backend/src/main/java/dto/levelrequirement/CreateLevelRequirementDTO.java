@@ -1,7 +1,7 @@
 package dto.levelrequirement;
 
 public record CreateLevelRequirementDTO(
-    Long level_id,
+    Long levelId,
     String requirement,
     String description
     ) {

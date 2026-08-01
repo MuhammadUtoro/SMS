@@ -44,20 +44,20 @@ public class TrainerService {
     }
 
     // Retrieve trainer by ID - GET
-    public TrainerSummaryDTO getTrainerById(Long trainer_id) {
-        Trainer trainer = trainerRepository.findTrainerById(trainer_id);
+    public TrainerSummaryDTO getTrainerById(Long trainerId) {
+        Trainer trainer = trainerRepository.findTrainerById(trainerId);
         if (trainer == null) {
-            throw new NotFoundException("Trainer with ID: " + trainer_id + " is not found!");
+            throw new NotFoundException("Trainer with ID: " + trainerId + " is not found!");
         }
         return trainerMapper.toSummaryDTO(trainer);
     }
 
     // Update trainer info - PUT
     @Transactional
-    public TrainerSummaryDTO updateTrainerInfoEntity(Long trainer_id, UpdateTrainerInfoDTO dto) {
-        Trainer trainer = trainerRepository.findTrainerById(trainer_id);
+    public TrainerSummaryDTO updateTrainerInfoEntity(Long trainerId, UpdateTrainerInfoDTO dto) {
+        Trainer trainer = trainerRepository.findTrainerById(trainerId);
         if (trainer == null) {
-            throw new NotFoundException("Trainer with ID: " + trainer_id + " is not found!");
+            throw new NotFoundException("Trainer with ID: " + trainerId + " is not found!");
         }
 
         trainerMapper.updateTrainerInfoEntity(trainer, dto);
@@ -65,8 +65,8 @@ public class TrainerService {
     }
 
     @Transactional
-    public void deleteTrainer(Long trainer_id) {
-        boolean deleted = trainerRepository.deleteTrainer(trainer_id);
+    public void deleteTrainer(Long trainerId) {
+        boolean deleted = trainerRepository.deleteTrainer(trainerId);
 
         if (!deleted) {
             throw new NotFoundException("Trainer not found!");

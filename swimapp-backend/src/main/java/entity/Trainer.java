@@ -20,16 +20,16 @@ public class Trainer {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="trainer_id")
-  private Long trainer_id;
+  private Long trainerId;
 
   @Column(name="keycloak_user_id")
-  private UUID keycloak_user_id;
+  private UUID keycloakUserId;
   
   @Column(name="first_name")
-  private String first_name;
+  private String firstName;
 
   @Column(name="last_name")
-  private String last_name;
+  private String lastName;
 
   // Set the One to Many relationship with course
   @OneToMany(mappedBy="trainer")
@@ -37,35 +37,35 @@ public class Trainer {
 
   // Getter and Setter
   public Long getTrainerId() {
-    return trainer_id;
+    return trainerId;
   }
 
-  public void setTrainerId(Long trainer_id) {
-    this.trainer_id = trainer_id;
+  public void setTrainerId(Long trainerId) {
+    this.trainerId = trainerId;
   }
   
   public UUID getKeyCloakUserId() {
-    return keycloak_user_id;
+    return keycloakUserId;
   }
 
-  public void setKeyCloakUserId(UUID keycloak_user_id) {
-    this.keycloak_user_id = keycloak_user_id;
+  public void setKeyCloakUserId(UUID keycloakUserId) {
+    this.keycloakUserId = keycloakUserId;
   }
 
   public String getFirstName() {
-    return first_name;
+    return firstName;
   }
 
-  public void setFirstName(String first_name) {
-    this.first_name = first_name;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
   public String getLastName() {
-    return last_name;
+    return lastName;
   }
 
   public void setLastName(String last_name) {
-    this.last_name =last_name;
+    this.lastName = lastName;
   } 
 
   public List<Course> getCourses() {

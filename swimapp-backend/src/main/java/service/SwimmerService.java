@@ -58,10 +58,10 @@ public class SwimmerService {
     }
 
     // Retrieve swimmer by ID - GET
-    public SwimmerDetailDTO getSwimmerById(Long swimmer_id) {
-        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmer_id);
+    public SwimmerDetailDTO getSwimmerById(Long swimmerId) {
+        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
-            throw new NotFoundException("Swimmer with ID: " + swimmer_id + " is not found!");
+            throw new NotFoundException("Swimmer with ID: " + swimmerId + " is not found!");
         }
         return swimmerMapper.toDetailDTO(swimmer);
     }
@@ -75,30 +75,30 @@ public class SwimmerService {
 
     // Update Swimmer Info - for admin - PUT
     @Transactional
-    public SwimmerDetailDTO updateSwimmerInfoEntity(Long swimmer_id, UpdateSwimmerInfoDTO dto) {
-        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmer_id);
+    public SwimmerDetailDTO updateSwimmerInfoEntity(Long swimmerId, UpdateSwimmerInfoDTO dto) {
+        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
-            throw new NotFoundException("Swimmer with ID: " + swimmer_id + " is not found!");
+            throw new NotFoundException("Swimmer with ID: " + swimmerId + " is not found!");
         }
         // Use the mapper for convert the values
         swimmerMapper.updateSwimmerInfoEntity(swimmer, dto);
 
         // Parent
-        Parent parent = parentRepository.findParentById(dto.parent_id());
+        Parent parent = parentRepository.findParentById(dto.parentId());
         if (parent == null) {
             throw new NotFoundException("Parent not found!");
         }
         swimmer.setParent(parent);
 
         // Level
-        Level level = levelRepository.findLevelById(dto.level_id());
+        Level level = levelRepository.findLevelById(dto.levelId());
         if (level == null) {
             throw new NotFoundException("Level not found!");
         }
         swimmer.setLevel(level);
 
         // Course
-        Course course = courseRepository.findCourseById(dto.course_id());
+        Course course = courseRepository.findCourseById(dto.courseId());
         if (course == null) {
             throw new NotFoundException("Course not found!");
         }
@@ -110,14 +110,14 @@ public class SwimmerService {
 
     // Update Level - PATCH
     @Transactional
-    public SwimmerDetailDTO updateSwimmerLevel(Long swimmer_id, UpdateSwimmerLevelDTO dto) {
-        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmer_id);
+    public SwimmerDetailDTO updateSwimmerLevel(Long swimmerId, UpdateSwimmerLevelDTO dto) {
+        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
             throw new NotFoundException("Swimmer not found!");
         }
 
         // Fetch level
-        Level level = levelRepository.findLevelById(dto.level_id());
+        Level level = levelRepository.findLevelById(dto.levelId());
         if (level == null) {
             throw new NotFoundException("Level not found!");
         }
@@ -127,14 +127,14 @@ public class SwimmerService {
 
     // Update Course - PATCH
     @Transactional
-    public SwimmerDetailDTO updateSwimmerCourse(Long swimmer_id, UpdateSwimmerCourseDTO dto) {
-        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmer_id);
+    public SwimmerDetailDTO updateSwimmerCourse(Long swimmerId, UpdateSwimmerCourseDTO dto) {
+        Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
             throw new NotFoundException("Swimmer not found!");
         }
 
         // Fetch course
-        Course course = courseRepository.findCourseById(dto.course_id());
+        Course course = courseRepository.findCourseById(dto.courseId());
         if (course == null) {
             throw new NotFoundException("Course not found!");
         }
@@ -144,9 +144,9 @@ public class SwimmerService {
 
     // Delete swimmer - DELETE
     @Transactional
-    public void deleteSwimmer(Long swimmer_id) {
+    public void deleteSwimmer(Long swimmerId) {
 
-        boolean deleted = swimmerRepository.deleteSwimmer(swimmer_id);
+        boolean deleted = swimmerRepository.deleteSwimmer(swimmerId);
 
         if (!deleted) {
             throw new NotFoundException("Swimmer not found!");

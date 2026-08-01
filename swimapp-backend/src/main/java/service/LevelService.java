@@ -44,20 +44,20 @@ public class LevelService {
     }
 
     // Retrieve Level By ID - GET
-    public LevelSummaryDTO getLevelById(Long level_id) {
-        Level level = levelRepository.findLevelById(level_id);
+    public LevelSummaryDTO getLevelById(Long levelId) {
+        Level level = levelRepository.findLevelById(levelId);
         if (level == null) {
-            throw new NotFoundException("Level with ID: " + level_id + " is not found!");
+            throw new NotFoundException("Level with ID: " + levelId + " is not found!");
         }
         return levelMapper.toSummaryDTO(level);
     }
 
     // UpdateLevelInfoDTO - PUT
     @Transactional
-    public LevelSummaryDTO updateLevelInfoEntity(Long level_id, UpdateLevelInfoDTO dto) {
-        Level level = levelRepository.findLevelById(level_id);
+    public LevelSummaryDTO updateLevelInfoEntity(Long levelId, UpdateLevelInfoDTO dto) {
+        Level level = levelRepository.findLevelById(levelId);
         if (level == null) {
-            throw new NotFoundException("Level with ID: " + level_id + " not found!");
+            throw new NotFoundException("Level with ID: " + levelId + " not found!");
         }
         levelMapper.updateLevelInfoEntity(level, dto);
         return levelMapper.toSummaryDTO(level);
@@ -65,8 +65,8 @@ public class LevelService {
 
     // deleteLevel - DELETE
     @Transactional
-    public void deleteLevel(Long level_id) {
-        boolean deleted = levelRepository.deleteLevel(level_id);
+    public void deleteLevel(Long levelId) {
+        boolean deleted = levelRepository.deleteLevel(levelId);
         if (!deleted) {
             throw new NotFoundException("Level not found!");
         }

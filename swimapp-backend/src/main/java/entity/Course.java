@@ -20,7 +20,7 @@ public class Course {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="course_id")
-  private Long course_id;
+  private Long courseId;
 
   // It is a ManyToOne relationship from course perspective, since one course
   // can only have one trainers but one trainer can be on multiple courses 
@@ -39,21 +39,21 @@ public class Course {
   private List<Swimmer> swimmers;
 
   @Column(name="course_name")
-  private String course_name;
+  private String courseName;
 
   @Column(name="course_day")
-  private String course_day;
+  private String courseDay;
 
   @Column(name="course_time")
-  private LocalTime course_time;
+  private LocalTime courseTime;
   
   // Getter and Setter
   public Long getCourseId() {
-    return course_id;
+    return courseId;
   }
 
-  public void setCourseId(Long course_id) {
-    this.course_id = course_id;
+  public void setCourseId(Long courseId) {
+    this.courseId = courseId;
   }
 
   public Trainer getTrainer() {
@@ -73,27 +73,27 @@ public class Course {
   }
 
   public String getCourseName() {
-    return course_name;
+    return courseName;
   }
 
-  public void setCourseName(String course_name) {
-    this.course_name = course_name;
+  public void setCourseName(String courseName) {
+    this.courseName = courseName;
   }
 
   public String getCourseDay() {
-    return course_day;
+    return courseDay;
   }
 
-  public void setCourseDay(String course_day) {
-    this.course_day = course_day;
+  public void setCourseDay(String courseDay) {
+    this.courseDay = courseDay;
   }
 
   public LocalTime getCourseTime() {
-    return course_time;
+    return courseTime;
   }
   
-  public void setCourseTime(LocalTime course_time) {
-    this.course_time = course_time;
+  public void setCourseTime(LocalTime courseTime) {
+    this.courseTime = courseTime;
   }
 
   public List<Swimmer> getSwimmers() {

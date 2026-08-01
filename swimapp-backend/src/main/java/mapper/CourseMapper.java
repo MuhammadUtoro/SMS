@@ -14,9 +14,9 @@ public class CourseMapper {
   // CreateTrainerDTO - Request
   public Course toCreateEntity(CreateCourseDTO courseDTO) {
     Course course = new Course();
-    course.setCourseName(courseDTO.course_name());
-    course.setCourseDay(courseDTO.course_day());
-    course.setCourseTime(courseDTO.course_time());
+    course.setCourseName(courseDTO.courseName());
+    course.setCourseDay(courseDTO.courseDay());
+    course.setCourseTime(courseDTO.courseTime());
     return course;
   }
 
@@ -62,8 +62,8 @@ public class CourseMapper {
 
   // CoursUpdateInfo - Request
   public void updateCourseInfoEntity(Course course, UpdateCourseInfoDTO dto) {
-    course.setCourseName(dto.course_name());
-    course.setCourseDay(dto.course_day());
-    course.setCourseTime(dto.course_time());
+    course.setCourseName(dto.courseName());
+    course.setCourseDay(dto.courseDay());
+    course.setCourseTime(dto.courseTime());
   }
 }

@@ -18,10 +18,10 @@ public class Parent {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="parent_id")
-  private Long parent_id;
+  private Long parentId;
   
   @Column(name="keycloak_user_id")
-  private UUID keycloak_user_id;
+  private UUID keycloakUserId;
   
   @Column(name="email")
   private String email;
@@ -31,19 +31,19 @@ public class Parent {
 
   // Getter and Setter
   public Long getParentId() {
-    return parent_id;
+    return parentId;
   }
 
-  public void setParentId(Long parent_id) {
-    this.parent_id = parent_id;
+  public void setParentId(Long parentId) {
+    this.parentId = parentId;
   }
 
   public UUID getKeyCloakUserId() {
-    return keycloak_user_id;
+    return keycloakUserId;
   }
 
   public void setKeyCloakUserId(UUID keycloak_user_id) {
-    this.keycloak_user_id = keycloak_user_id;
+    this.keycloakUserId = keycloakUserId;
   }
 
   public String getEmail() {

@@ -17,8 +17,8 @@ public class TrainerMapper {
   // CreateTrainerDTO - Request
   public Trainer toCreateEntity(CreateTrainerDTO trainerDTO) {
     Trainer trainer = new Trainer();
-    trainer.setFirstName(trainerDTO.first_name());
-    trainer.setLastName(trainerDTO.last_name());
+    trainer.setFirstName(trainerDTO.firstName());
+    trainer.setLastName(trainerDTO.lastName());
     return trainer;
   }
 
@@ -51,7 +51,7 @@ public class TrainerMapper {
 
   // Update Trainer Info
   public void updateTrainerInfoEntity(Trainer trainer, UpdateTrainerInfoDTO dto) {
-    trainer.setFirstName(dto.first_name());
-    trainer.setLastName(dto.last_name());
+    trainer.setFirstName(dto.firstName());
+    trainer.setLastName(dto.lastName());
   }
 }

@@ -17,7 +17,7 @@ public class LevelMapper {
   // CreateLevelDTO - Request
   public Level toCreateEntity(CreateLevelDTO levelDTO) {
     Level level = new Level();
-    level.setLevelName(levelDTO.level_name());
+    level.setLevelName(levelDTO.levelName());
     return level;
   }
 
@@ -49,7 +49,7 @@ public class LevelMapper {
 
   // UpdateLevelInfoDTO - Request
   public void updateLevelInfoEntity(Level level, UpdateLevelInfoDTO dto) {
-    level.setLevelName(dto.level_name());
+    level.setLevelName(dto.levelName());
   }
 }
 

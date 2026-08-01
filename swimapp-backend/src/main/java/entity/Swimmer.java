@@ -18,7 +18,7 @@ public class Swimmer {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="swimmer_id")
-  private Long swimmer_id;
+  private Long swimmerId;
 
   @ManyToOne
   @JoinColumn(name="parent_id")
@@ -33,45 +33,45 @@ public class Swimmer {
   private Level level;
 
   @Column(name="first_name")
-  private String first_name;
+  private String firstName;
 
   @Column(name="last_name")
-  private String last_name;
+  private String lastName;
 
   @Column(name="date_of_birth")
-  private LocalDate date_of_birth;
+  private LocalDate dateOfBirth;
 
   // Geter and Setter
   public Long getSwimmerId() {
-    return swimmer_id;
+    return swimmerId;
   }
 
-  public void setSwimmerId(Long swimmer_id) {
-    this.swimmer_id = swimmer_id;
+  public void setSwimmerId(Long swimmerId) {
+    this.swimmerId = swimmerId;
   }
   
   public String getFirstName() {
-    return first_name;
+    return firstName;
   }
 
-  public void setFirstName(String first_name) {
-    this.first_name = first_name;
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
   public String getLastName() {
-    return last_name;
+    return lastName;
   }
 
-  public void setLastName(String last_name) {
-    this.last_name = last_name;
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
   public LocalDate getDob() {
-    return date_of_birth;
+    return dateOfBirth;
   }
 
-  public void setDob(LocalDate date_of_birth) {
-    this.date_of_birth = date_of_birth;
+  public void setDob(LocalDate dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
   }
 
   public Parent getParent() {

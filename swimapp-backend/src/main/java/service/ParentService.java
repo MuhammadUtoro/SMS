@@ -47,17 +47,17 @@ public class ParentService {
     }
 
     // Retrieve Parent by ID
-    public ParentSummaryDTO getParentById(Long parent_id) {
-        Parent parent = parentRepository.findParentById(parent_id);
+    public ParentSummaryDTO getParentById(Long parentId) {
+        Parent parent = parentRepository.findParentById(parentId);
 
         return parentMapper.toSummaryDTO(parent);
     }
 
     // Update Parent - PUT
-    public ParentSummaryDTO updateParentInfoEntity(Long parent_id, UpdateParentInfoDTO dto) {
-        Parent parent = parentRepository.findParentById(parent_id);
+    public ParentSummaryDTO updateParentInfoEntity(Long parentId, UpdateParentInfoDTO dto) {
+        Parent parent = parentRepository.findParentById(parentId);
         if (parent == null) {
-            throw new NotFoundException("Parent with ID: " + parent_id + " is not found!");
+            throw new NotFoundException("Parent with ID: " + parentId + " is not found!");
         }
         parentMapper.UpdateParentInfoEntity(parent, dto);
         return parentMapper.toSummaryDTO(parent);

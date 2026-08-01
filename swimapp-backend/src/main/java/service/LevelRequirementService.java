@@ -35,7 +35,7 @@ public class LevelRequirementService {
             CreateLevelRequirementDTO dto) {
         LevelRequirement levelRequirement = levelRequirementMapper.toCreateEntity(dto);
         // Add level_id
-        Level level = levelRepository.findLevelById(dto.level_id());
+        Level level = levelRepository.findLevelById(dto.levelId());
         levelRequirement.setLevel(level);
         // Persist
         levelRequirementRepository.persist(levelRequirement);
@@ -50,8 +50,8 @@ public class LevelRequirementService {
     }
 
     // GetLevelRequirementById - GET
-    public LevelRequirementSummaryDTO getLevelRequirementById(Long level_requirement_id) {
-        LevelRequirement levelRequirement = levelRequirementRepository.findLevelRequirementById(level_requirement_id);
+    public LevelRequirementSummaryDTO getLevelRequirementById(Long levelRequirementId) {
+        LevelRequirement levelRequirement = levelRequirementRepository.findLevelRequirementById(levelRequirementId);
         if (levelRequirement == null) {
             throw new NotFoundException("Level Requirement not Found!");
         }
@@ -60,9 +60,9 @@ public class LevelRequirementService {
 
     // UpdateLevelInfoEntity - PUT
     @Transactional
-    public LevelRequirementSummaryDTO updateLevelInfoEntity(Long level_requirement_id,
+    public LevelRequirementSummaryDTO updateLevelInfoEntity(Long levelRequirementId,
             UpdateLevelRequirementInfoDTO dto) {
-        LevelRequirement levelRequirement = levelRequirementRepository.findLevelRequirementById(level_requirement_id);
+        LevelRequirement levelRequirement = levelRequirementRepository.findLevelRequirementById(levelRequirementId);
         if (levelRequirement == null) {
             throw new NotFoundException("Level Requirement not found!");
         }
@@ -72,10 +72,10 @@ public class LevelRequirementService {
 
     // UpdateLevelRequirementLevelDTO - PATCH
     @Transactional
-    public LevelRequirementSummaryDTO UpdateLevelRequirementLevel(Long level_requirement_id, UpdateLevelRequirementLevelDTO dto) {
-        LevelRequirement levelRequirement = levelRequirementRepository.findLevelRequirementById(level_requirement_id);
+    public LevelRequirementSummaryDTO UpdateLevelRequirementLevel(Long levelRequirementId, UpdateLevelRequirementLevelDTO dto) {
+        LevelRequirement levelRequirement = levelRequirementRepository.findLevelRequirementById(levelRequirementId);
         // Fetch level
-        Level level = levelRepository.findLevelById(dto.level_id());
+        Level level = levelRepository.findLevelById(dto.levelId());
         if (level == null) {
             throw new NotFoundException("Level not found!");
         }
@@ -85,8 +85,8 @@ public class LevelRequirementService {
 
     // DeleteLevelRequirement - DELETE
     @Transactional
-    public void deleteLevelRequirement(Long level_requirement_id) {
-        boolean deleted = levelRequirementRepository.deleteLevelRequirement(level_requirement_id);
+    public void deleteLevelRequirement(Long levelRequirementId) {
+        boolean deleted = levelRequirementRepository.deleteLevelRequirement(levelRequirementId);
         if (!deleted) {
             throw new NotFoundException("Level Requirement not found!");
         }

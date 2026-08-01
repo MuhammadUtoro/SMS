@@ -18,9 +18,10 @@ public class Level {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   @Column(name="level_id")
-  private Long level_id;
-
-  private String level_name;
+  private Long levelId;
+    
+  @Column(name="level_name")
+  private String levelName;
 
   @OneToMany(mappedBy="level")
   private List<LevelRequirement> requirements = new ArrayList<>();
@@ -35,19 +36,19 @@ public class Level {
 
   // Getter and Setter
   public Long getLevelId() {
-    return level_id;
+    return levelId;
   }
 
-  public void setLevelId(Long level_id) {
-    this.level_id = level_id;
+  public void setLevelId(Long levelId) {
+    this.levelId = levelId;
   }
 
   public String getLevelName() {
-    return level_name;
+    return levelName;
   }
 
-  public void setLevelName(String level_name) {
-    this.level_name = level_name;
+  public void setLevelName(String levelName) {
+    this.levelName = levelName;
   }
 
   public List<LevelRequirement> getRequirements() {
