@@ -9,6 +9,7 @@ import dto.parent.ParentSummaryDTO;
 import dto.parent.UpdateParentInfoDTO;
 import entity.Parent;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.NotFoundException;
 import mapper.ParentMapper;
@@ -19,7 +20,7 @@ public class ParentService {
 
     @Inject
     KeycloakAdminService keycloakAdminService;
-    
+
     @Inject
     ParentMapper parentMapper;
 
@@ -27,16 +28,29 @@ public class ParentService {
     ParentRepository parentRepository;
 
     // Register User - Parent
+    @Transactional
     public ParentRegistrationResponseDTO registerParent(ParentRegistrationRequestDTO dto) {
-        UUID keycloakUserId = keycloakAdminService.createUser(dto);
-        ParentRegistrationResponseDTO responseDTO = new ParentRegistrationResponseDTO(
-                dto.email(),
-                dto.firstName(),
-                dto.lastName(),
-                dto.username(),
-                keycloakUserId,
-                List.of("PARENT"));
-        return responseDTO;
+        UUID keycloakUserId = null;
+
+        try {
+            keycloakUserId = keycloakAdminService.createUser(dto);
+            Parent parent = new Parent();
+
+            parent.setKeycloakUserId(keycloakUserId);
+            parent.setEmail(dto.email());
+
+            parentRepository.persist(parent);
+
+            return new ParentRegistrationResponseDTO(
+                    dto.email(),
+                    dto.firstName(),
+                    dto.lastName());
+        } catch (Exception e) {
+            if (keycloakUserId != null) {
+                keycloakAdminService.deleteUser(keycloakUserId);
+            }
+            throw e;
+        }
     }
 
     // Retrieve all parents - GET

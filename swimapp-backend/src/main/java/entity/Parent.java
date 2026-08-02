@@ -42,7 +42,7 @@ public class Parent {
     return keycloakUserId;
   }
 
-  public void setKeyCloakUserId(UUID keycloak_user_id) {
+  public void setKeycloakUserId(UUID keycloakUserId) {
     this.keycloakUserId = keycloakUserId;
   }
 

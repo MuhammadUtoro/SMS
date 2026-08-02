@@ -75,4 +75,11 @@ public class KeycloakAdminService {
         return UUID.fromString(id);
     }
 
+    // Delete user
+    public void deleteUser(UUID keycloakUserId) {
+        keycloak.realm("dio-project")
+                .users()
+                .get(keycloakUserId.toString())
+                .remove();
+    }
 }
