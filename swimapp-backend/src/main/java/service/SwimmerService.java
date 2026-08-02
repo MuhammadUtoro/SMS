@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.UUID;
 
 import dto.swimmer.CreateSwimmerDTO;
 import dto.swimmer.CreateSwimmerResponseDTO;
@@ -13,7 +14,9 @@ import entity.Course;
 import entity.Level;
 import entity.Parent;
 import entity.Swimmer;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import jakarta.enterprise.context.ApplicationScoped;
+import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.NotFoundException;
 import jakarta.transaction.Transactional;
@@ -41,10 +44,23 @@ public class SwimmerService {
     @Inject
     SwimmerMapper swimmerMapper;
 
+    @Inject
+    SecurityIdentity securityIdentity;
+
+    @Inject
+    JsonWebToken jwt;
+
     // Create Swimmer(request) - POST
     @Transactional
     public CreateSwimmerResponseDTO createSwimmer(CreateSwimmerDTO dto) {
+        // Retrieve Id
+        UUID keycloakUserId  = UUID.fromString(jwt.getSubject()); 
+        // Retrieve Parent
+        Parent parent = parentRepository.findByKeycloakUserId(keycloakUserId);
+
         Swimmer swimmer = swimmerMapper.toCreateEntity(dto);
+        swimmer.setParent(parent);
+        
         // Persist
         swimmerRepository.persist(swimmer);
         return swimmerMapper.toCreateResponseDTO(swimmer);
@@ -110,7 +126,7 @@ public class SwimmerService {
 
     // Update Level - PATCH
     @Transactional
-    public SwimmerDetailDTO updateSwimmerLevel(Long swimmerId, UpdateSwimmerLevelDTO dto) {
+    public CreateSwimmerResponseDTO updateSwimmerLevel(Long swimmerId, UpdateSwimmerLevelDTO dto) {
         Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
             throw new NotFoundException("Swimmer not found!");
@@ -122,12 +138,12 @@ public class SwimmerService {
             throw new NotFoundException("Level not found!");
         }
         swimmer.setLevel(level);
-        return swimmerMapper.toDetailDTO(swimmer);
+        return swimmerMapper.toCreateResponseDTO(swimmer);
     }
 
     // Update Course - PATCH
     @Transactional
-    public SwimmerDetailDTO updateSwimmerCourse(Long swimmerId, UpdateSwimmerCourseDTO dto) {
+    public CreateSwimmerResponseDTO updateSwimmerCourse(Long swimmerId, UpdateSwimmerCourseDTO dto) {
         Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
             throw new NotFoundException("Swimmer not found!");
@@ -139,7 +155,7 @@ public class SwimmerService {
             throw new NotFoundException("Course not found!");
         }
         swimmer.setCourse(course);
-        return swimmerMapper.toDetailDTO(swimmer);
+        return swimmerMapper.toCreateResponseDTO(swimmer);
     }
 
     // Delete swimmer - DELETE

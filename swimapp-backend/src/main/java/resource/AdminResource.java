@@ -3,6 +3,7 @@ package resource;
 import java.util.UUID;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 
 import dto.user.AuthenticatedUserResponseDTO;
 import io.quarkus.security.Authenticated;
@@ -19,6 +20,7 @@ import jakarta.ws.rs.core.Response;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Authenticated
+@SecurityRequirement(name="Keycloak")
 public class AdminResource {
 
   @Inject

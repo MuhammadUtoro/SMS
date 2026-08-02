@@ -20,6 +20,7 @@ public class SwimmerMapper {
     Swimmer swimmer = new Swimmer();
     swimmer.setFirstName(swimmerDTO.firstName());
     swimmer.setLastName(swimmerDTO.lastName());
+    swimmer.setDob(swimmerDTO.dateOfBirth());
     return swimmer;
   }
 

@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.List;
+import java.util.UUID;
 
 import entity.Parent;
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
@@ -31,6 +32,11 @@ public class ParentRepository implements PanacheRepository<Parent> {
   // Find by Id
   public Parent findParentById(Long parent_id) {
     return findById(parent_id);
+  }
+
+  // Find by KeycloakId
+  public Parent findByKeycloakUserId(UUID id) {
+    return find("keycloakUserId", id).firstResult();
   }
 
   // Find by Email

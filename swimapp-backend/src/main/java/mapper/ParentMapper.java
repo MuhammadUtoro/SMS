@@ -4,9 +4,13 @@ import dto.parent.ParentSummaryDTO;
 import dto.parent.UpdateParentInfoDTO;
 import entity.Parent;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 @ApplicationScoped
 public class ParentMapper {
+
+  @Inject
+  SwimmerMapper swimmerMapper;
 
   // Entity to DTO - ResponseDTO
   public ParentSummaryDTO toSummaryDTO(Parent parent) {
@@ -15,8 +19,9 @@ public class ParentMapper {
     }
     return new ParentSummaryDTO(
         parent.getEmail(),
-        parent.getSwimmers()
-        );
+        parent.getSwimmers().stream().map(
+          swimmerMapper::toSummaryDTO
+          ).toList());
   }
 
   // DTO to Entity - RequestDTO
