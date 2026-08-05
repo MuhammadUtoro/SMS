@@ -15,7 +15,7 @@ export class App {
   private keycloak = inject(Keycloak);
 
   callBackend() {
-    this.http.get('http://localhost:8080/api/me').subscribe({
+    this.http.get('http://localhost:8080/auth/me').subscribe({
       next: (response) => {
         console.log(response);
       },

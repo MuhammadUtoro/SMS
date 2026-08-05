@@ -3,9 +3,8 @@ package resource;
 import java.util.UUID;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 
-import dto.user.AuthenticatedUserResponseDTO;
+import dto.user.CurrentUserResponseDTO;
 import io.quarkus.security.Authenticated;
 import io.quarkus.security.identity.SecurityIdentity;
 import jakarta.inject.Inject;
@@ -16,11 +15,11 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/api/me")
+@Path("/auth/me")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Authenticated
-@SecurityRequirement(name="Keycloak")
+//@SecurityRequirement(name="Keycloak")
 public class AdminResource {
 
   @Inject
@@ -31,7 +30,7 @@ public class AdminResource {
 
   @GET
   public Response me() {
-   AuthenticatedUserResponseDTO responseDTO = new AuthenticatedUserResponseDTO(
+   CurrentUserResponseDTO responseDTO = new CurrentUserResponseDTO(
       securityIdentity.getPrincipal().getName(),
       UUID.fromString(jwt.getSubject()),
       securityIdentity.getRoles());
