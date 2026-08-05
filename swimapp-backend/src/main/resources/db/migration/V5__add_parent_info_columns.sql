@@ -1,0 +1,8 @@
+ALTER TABLE parents
+ADD COLUMN first_name VARCHAR(30);
+
+ALTER TABLE parents
+ADD COLUMN last_name VARCHAR(30);
+
+ALTER TABLE parents
+ADD COLUMN username VARCHAR(30);
