@@ -9,14 +9,17 @@ import dto.swimmer.CreateSwimmerResponseDTO;
 import dto.swimmer.SwimmerDetailDTO;
 import dto.swimmer.SwimmerSummaryDTO;
 import dto.swimmer.UpdateSwimmerCourseDTO;
+import dto.swimmer.UpdateSwimmerInfoDTO;
 import dto.swimmer.UpdateSwimmerLevelDTO;
 import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.PATCH;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -49,6 +52,20 @@ public class SwimmerResource {
     return Response.status(Response.Status.OK).entity(swimmers).build();
   }
 
+  @GET
+  @Path("/{swimmerId}")
+  public Response getSwimmerById(@PathParam("swimmerId") Long swimmerId) {
+    SwimmerDetailDTO swimmer = swimmerService.getSwimmerById(swimmerId);
+    return Response.ok(swimmer).build();
+  }
+
+  @PUT
+  @Path("/{swimmerId}")
+  public Response UpdateSwimmerInfoDTO(@PathParam("swimmerId") Long swimmerId, UpdateSwimmerInfoDTO dto) {
+    SwimmerDetailDTO updatedDTO = swimmerService.updateSwimmerInfoEntity(swimmerId, dto);
+    return Response.ok(updatedDTO).build();
+  }
+
   @PATCH
   @Path("/{swimmerId}/level")
   public Response updateSwimmerLevel(@PathParam("swimmerId") Long swimmerId, UpdateSwimmerLevelDTO dto) {
@@ -63,4 +80,10 @@ public class SwimmerResource {
     return Response.ok(updatedDTO).build();
   }
 
+  @DELETE
+  @Path("/{swimmerId}")
+  public Response deleteSwimmer(@PathParam("swimmerId") Long swimmerId) {
+    swimmerService.deleteSwimmer(swimmerId);
+    return Response.noContent().build();
+  }
 }

@@ -1,11 +1,13 @@
 package repository;
 
 import java.util.List;
+
+import entity.Parent;
 import entity.Swimmer;
-import jakarta.enterprise.context.ApplicationScoped;
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import io.quarkus.panache.common.Page;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class SwimmerRepository implements PanacheRepository<Swimmer> {
@@ -22,13 +24,13 @@ public class SwimmerRepository implements PanacheRepository<Swimmer> {
   }
 
   // Find swimmer by Id
-  public Swimmer findSwimmerById(Long swimmer_id) {
-    return findById(swimmer_id);
+  public Swimmer findSwimmerById(Long swimmerId) {
+    return findById(swimmerId);
   }
   
   // Find swimmer's parent by Id
-  public List<Swimmer> findSwimmersByParentId(Long parent_id) {
-   return find("parent.parent_id", parent_id).list();
+  public List<Swimmer> findSwimmersByParent(Parent parent) {
+   return find("parent", parent).list();
   }
 
   // Delete swimmer

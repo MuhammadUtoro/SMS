@@ -3,17 +3,24 @@ package service;
 import java.util.List;
 import java.util.UUID;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
+import dto.parent.ParentInfoDTO;
 import dto.parent.ParentRegistrationRequestDTO;
 import dto.parent.ParentRegistrationResponseDTO;
 import dto.parent.ParentSummaryDTO;
 import dto.parent.UpdateParentInfoDTO;
+import dto.swimmer.SwimmerSummaryDTO;
 import entity.Parent;
+import entity.Swimmer;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import mapper.ParentMapper;
+import mapper.SwimmerMapper;
 import repository.ParentRepository;
+import repository.SwimmerRepository;
 
 @ApplicationScoped
 public class ParentService {
@@ -25,7 +32,16 @@ public class ParentService {
     ParentMapper parentMapper;
 
     @Inject
+    SwimmerMapper swimmerMapper;
+
+    @Inject
     ParentRepository parentRepository;
+
+    @Inject
+    SwimmerRepository swimmerRepository;
+
+    @Inject
+    JsonWebToken jwt;
 
     // Register User - Parent
     @Transactional
@@ -38,6 +54,9 @@ public class ParentService {
 
             parent.setKeycloakUserId(keycloakUserId);
             parent.setEmail(dto.email());
+            parent.setFirstName(dto.firstName());
+            parent.setLastName(dto.lastName());
+            parent.setUsername(dto.username());
 
             parentRepository.persist(parent);
 
@@ -75,5 +94,40 @@ public class ParentService {
         }
         parentMapper.UpdateParentInfoEntity(parent, dto);
         return parentMapper.toSummaryDTO(parent);
+    }
+
+    // Get parent profile
+    public ParentInfoDTO getMyProfile() {
+        UUID keycloakUserId = UUID.fromString(jwt.getSubject());
+
+        if (keycloakUserId == null) {
+                throw new NotFoundException("User not found!");
+        }
+
+        Parent parent = parentRepository.findByKeycloakUserId(keycloakUserId);
+
+        return parentMapper.toProfileDTO(parent);
+    }
+
+    // Get list of swimmers according to parentId
+    public List<SwimmerSummaryDTO> getMySwimmers() {
+
+        String subject = jwt.getSubject();
+        if (subject == null) {
+            throw new NotFoundException("Keycloak id ot found!");
+        }
+        UUID keycloakUserId = UUID.fromString(subject);
+
+        Parent parent = parentRepository.findByKeycloakUserId(keycloakUserId);
+
+        if (parent == null) {
+            throw new NotFoundException("Parent not found!");
+        }
+
+        List<Swimmer> swimmers = swimmerRepository.findSwimmersByParent(parent);
+
+        return swimmers.stream().map(
+                swimmerMapper::toSummaryDTO
+                ).toList();
     }
 }
