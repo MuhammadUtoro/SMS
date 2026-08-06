@@ -51,14 +51,13 @@ public class ParentService {
         UUID keycloakUserId = null;
 
         try {
-            
+
             UserRegistrationDTO userDTO = new UserRegistrationDTO(
                     dto.email(),
                     dto.firstName(),
                     dto.lastName(),
                     dto.username(),
-                    dto.password()
-                    );
+                    dto.password());
 
             keycloakUserId = keycloakAdminService.createUser(userDTO, UserRole.PARENT);
             Parent parent = new Parent();
@@ -97,12 +96,32 @@ public class ParentService {
         return parentMapper.toSummaryDTO(parent);
     }
 
-    // Update Parent - PUT
-    public ParentSummaryDTO updateParentInfoEntity(Long parentId, UpdateParentInfoDTO dto) {
+    // Update Parent by Admin - PUT
+    public ParentSummaryDTO UpdateParentInfoEntity(Long parentId, UpdateParentInfoDTO dto) {
         Parent parent = parentRepository.findParentById(parentId);
+
         if (parent == null) {
-            throw new NotFoundException("Parent with ID: " + parentId + " is not found!");
+            throw new NotFoundException("Parent not found!");
         }
+        parentMapper.UpdateParentInfoEntity(parent, dto);
+
+        return parentMapper.toSummaryDTO(parent);
+    }
+
+    // Update Parent by Parent- PUT
+    public ParentSummaryDTO updateMyProfile(UpdateParentInfoDTO dto) {
+        UUID keycloakUserId = UUID.fromString(jwt.getSubject());
+
+        if (keycloakUserId == null) {
+            throw new NotFoundException("User not found!");
+        }
+
+        Parent parent = parentRepository.findByKeycloakUserId(keycloakUserId);
+
+        if (parent == null) {
+            throw new NotFoundException("User not found!");
+        }
+
         parentMapper.UpdateParentInfoEntity(parent, dto);
         return parentMapper.toSummaryDTO(parent);
     }
@@ -112,7 +131,7 @@ public class ParentService {
         UUID keycloakUserId = UUID.fromString(jwt.getSubject());
 
         if (keycloakUserId == null) {
-                throw new NotFoundException("User not found!");
+            throw new NotFoundException("User not found!");
         }
 
         Parent parent = parentRepository.findByKeycloakUserId(keycloakUserId);
@@ -138,7 +157,6 @@ public class ParentService {
         List<Swimmer> swimmers = swimmerRepository.findSwimmersByParent(parent);
 
         return swimmers.stream().map(
-                swimmerMapper::toSummaryDTO
-                ).toList();
+                swimmerMapper::toSummaryDTO).toList();
     }
 }
