@@ -1,16 +1,18 @@
 package service;
 
-import java.util.UUID;
 import java.util.List;
+import java.util.UUID;
 
-import dto.parent.ParentRegistrationRequestDTO;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.ws.rs.core.Response;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
-import org.keycloak.representations.idm.UserRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.RoleRepresentation;
+import org.keycloak.representations.idm.UserRepresentation;
+
+import dto.user.UserRegistrationDTO;
+import enums.UserRole;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.core.Response;
 
 @ApplicationScoped
 public class KeycloakAdminService {
@@ -30,7 +32,7 @@ public class KeycloakAdminService {
     }
     
     // Create user
-    public UUID createUser(ParentRegistrationRequestDTO dto) {
+    public UUID createUser(UserRegistrationDTO dto, UserRole role) {
         UserRepresentation user =  new UserRepresentation();
 
         user.setUsername(dto.username());
@@ -59,18 +61,18 @@ public class KeycloakAdminService {
                 location.lastIndexOf('/') + 1
                 );
 
-        // Add role - PARENT
-        RoleRepresentation parentRole = keycloak.realm("dio-project")
+        // Add rolek
+        RoleRepresentation roleRepresentation = keycloak.realm("dio-project")
                                                 .roles()
-                                                .get("PARENT")
+                                                .get(role.name())
                                                 .toRepresentation();
-        // Assign role - PARENT
+        // Assign role
         keycloak.realm("dio-project")
                 .users()
                 .get(id) // Id that we fetch
                 .roles()
                 .realmLevel()
-                .add(List.of(parentRole));
+                .add(List.of(roleRepresentation));
 
         return UUID.fromString(id);
     }

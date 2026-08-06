@@ -11,8 +11,10 @@ import dto.parent.ParentRegistrationResponseDTO;
 import dto.parent.ParentSummaryDTO;
 import dto.parent.UpdateParentInfoDTO;
 import dto.swimmer.SwimmerSummaryDTO;
+import dto.user.UserRegistrationDTO;
 import entity.Parent;
 import entity.Swimmer;
+import enums.UserRole;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -49,7 +51,16 @@ public class ParentService {
         UUID keycloakUserId = null;
 
         try {
-            keycloakUserId = keycloakAdminService.createUser(dto);
+            
+            UserRegistrationDTO userDTO = new UserRegistrationDTO(
+                    dto.email(),
+                    dto.firstName(),
+                    dto.lastName(),
+                    dto.username(),
+                    dto.password()
+                    );
+
+            keycloakUserId = keycloakAdminService.createUser(userDTO, UserRole.PARENT);
             Parent parent = new Parent();
 
             parent.setKeycloakUserId(keycloakUserId);

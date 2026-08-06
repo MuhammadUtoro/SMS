@@ -1,9 +1,5 @@
 package dto.parent;
 
-import java.util.UUID;
-
-import java.util.List;
-
 public record ParentRegistrationResponseDTO(
                 String email,
                 String firstName,
