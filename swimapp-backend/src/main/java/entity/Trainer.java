@@ -31,6 +31,12 @@ public class Trainer {
   @Column(name="last_name")
   private String lastName;
 
+  @Column(name="username")
+  private String username;
+
+  @Column(name="email")
+  private String email;
+
   // Set the One to Many relationship with course
   @OneToMany(mappedBy="trainer")
   private List<Course> courses = new ArrayList<>();
@@ -64,9 +70,25 @@ public class Trainer {
     return lastName;
   }
 
-  public void setLastName(String last_name) {
+  public void setLastName(String lastName) {
     this.lastName = lastName;
   } 
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
   public List<Course> getCourses() {
     return courses;

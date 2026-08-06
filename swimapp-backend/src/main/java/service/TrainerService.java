@@ -1,12 +1,17 @@
 package service;
 
 import java.util.List;
+import java.util.UUID;
 
 import dto.trainer.CreateTrainerDTO;
 import dto.trainer.CreateTrainerResponseDTO;
+import dto.trainer.TrainerRegistrationRequestDTO;
+import dto.trainer.TrainerRegistrationResponseDTO;
 import dto.trainer.TrainerSummaryDTO;
 import dto.trainer.UpdateTrainerInfoDTO;
+import dto.user.UserRegistrationDTO;
 import entity.Trainer;
+import enums.UserRole;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -26,6 +31,46 @@ public class TrainerService {
 
     @Inject
     CourseRepository courseRepository;
+
+    @Inject
+    KeycloakAdminService keycloakAdminService;
+
+    // Register User - Trainer
+    @Transactional
+    public CreateTrainerResponseDTO registerTrainer(TrainerRegistrationRequestDTO dto) {
+        UUID keycloakUserId = null;
+
+        try {
+            
+            UserRegistrationDTO userDTO = new UserRegistrationDTO(
+                    dto.email(),
+                    dto.firstName(),
+                    dto.lastName(),
+                    dto.username(),
+                    dto.password()
+                    );
+
+            keycloakUserId = keycloakAdminService.createUser(userDTO, UserRole.TRAINER);
+            Trainer trainer = new Trainer();
+
+            trainer.setKeyCloakUserId(keycloakUserId);
+            trainer.setEmail(dto.email());
+            trainer.setFirstName(dto.firstName());
+            trainer.setLastName(dto.lastName());
+            trainer.setUsername(dto.username());
+            
+            trainerRepository.persist(trainer);
+
+            return trainerMapper.toCreateResponseDTO(trainer);
+
+        } catch (Exception e) {
+            if (keycloakUserId != null) {
+                keycloakAdminService.deleteUser(keycloakUserId);
+            }
+            throw e;
+        }
+    } 
+
 
     // Create Trainer(request) - POST
     @Transactional
