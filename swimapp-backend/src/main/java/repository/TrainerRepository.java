@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.List;
+import java.util.UUID;
 
 import entity.Trainer;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
@@ -33,6 +34,10 @@ public class TrainerRepository implements PanacheRepository<Trainer> {
   // Find trainer by Id
   public Trainer findTrainerById(Long trainer_id) {
     return findById(trainer_id);
+  }
+
+  public Trainer findByKeycloakUserId(UUID id) {
+    return find("keycloakUserId", id).firstResult();
   }
 
   // Delete trainer

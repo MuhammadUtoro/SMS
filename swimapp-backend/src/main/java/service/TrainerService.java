@@ -12,6 +12,7 @@ import dto.trainer.UpdateTrainerInfoDTO;
 import dto.user.UserRegistrationDTO;
 import entity.Trainer;
 import enums.UserRole;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -34,6 +35,9 @@ public class TrainerService {
 
     @Inject
     KeycloakAdminService keycloakAdminService;
+
+    @Inject
+    JsonWebToken jwt;
 
     // Register User - Trainer
     @Transactional
@@ -72,15 +76,6 @@ public class TrainerService {
     } 
 
 
-    // Create Trainer(request) - POST
-    @Transactional
-    public CreateTrainerResponseDTO createTrainer(CreateTrainerDTO dto) {
-        Trainer trainer = trainerMapper.toCreateEntity(dto);
-        // Persist
-        trainerRepository.persist(trainer);
-        return trainerMapper.toCreateResponseDTO(trainer);
-    }
-
     // Retrieve all trainers - GET
     public List<TrainerSummaryDTO> getTrainersList(int page, int size) {
         List<Trainer> trainers = trainerRepository.getTrainersList(page, size);
@@ -96,8 +91,24 @@ public class TrainerService {
         }
         return trainerMapper.toSummaryDTO(trainer);
     }
+    
+    // Trainer profile - GET
+    public TrainerSummaryDTO getMyProfile() {
+        UUID keycloakUserId = UUID.fromString(jwt.getSubject());
+        
+        if (keycloakUserId ==  null) {
+            throw new NotFoundException("User not found!");
+        }
+        Trainer trainer = trainerRepository.findByKeycloakUserId(keycloakUserId);
 
-    // Update trainer info - PUT
+        if (trainer == null) {
+            throw new NotFoundException("User not found!");
+        }
+
+        return trainerMapper.toSummaryDTO(trainer);
+    } 
+
+    // Update trainer info by Admin - PUT
     @Transactional
     public TrainerSummaryDTO updateTrainerInfoEntity(Long trainerId, UpdateTrainerInfoDTO dto) {
         Trainer trainer = trainerRepository.findTrainerById(trainerId);
@@ -107,6 +118,26 @@ public class TrainerService {
 
         trainerMapper.updateTrainerInfoEntity(trainer, dto);
         return trainerMapper.toSummaryDTO(trainer);
+    }
+
+    // Update trainer info by trainer - PUT
+    @Transactional
+    public TrainerSummaryDTO updateMyProfile(UpdateTrainerInfoDTO dto) {
+        UUID keycloakUserId = UUID.fromString(jwt.getSubject());
+
+        if (keycloakUserId == null) {
+            throw new NotFoundException("User not found!");
+        }
+
+        Trainer trainer = trainerRepository.findByKeycloakUserId(keycloakUserId);
+
+        if (trainer == null) {
+            throw new NotFoundException("User not found!");
+        }
+        trainerMapper.updateTrainerInfoEntity(trainer, dto);
+
+        return trainerMapper.toSummaryDTO(trainer); 
+
     }
 
     @Transactional
