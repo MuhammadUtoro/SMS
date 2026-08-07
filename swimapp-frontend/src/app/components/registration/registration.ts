@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ParentService } from '../../services/parent/parent.service';
 import { KeycloakService } from '../../services/keycloak/keycloak.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -25,7 +26,8 @@ import { KeycloakService } from '../../services/keycloak/keycloak.service';
 export class Registration {
   private parentService = inject(ParentService);
   private keycloakService = inject(KeycloakService);
-
+  private router = inject(Router);
+  
   form: FormGroup = new FormGroup({
     email: new FormControl(''),
     firstName: new FormControl(''),
@@ -39,6 +41,7 @@ export class Registration {
     this.parentService.registerParent(this.form.value).subscribe({
       next: (response) => {
         console.log('Success!', response);
+        this.router.navigate(['registration-success']);
       },
       error: (error) => {
         console.error('Failed!', error);
