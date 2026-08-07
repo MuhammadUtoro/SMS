@@ -9,6 +9,18 @@ export class KeycloakService {
   private keycloak = inject(Keycloak);
 
   login() {
-    this.keycloak.login();
+    return this.keycloak.login();
+  }
+
+  logout() {
+    return this.keycloak.logout();
+  }
+
+  isLoggedIn() {
+    return this.keycloak.authenticated;
+  }
+
+  getToken() {
+    return this.keycloak.token;
   }
 }
