@@ -3,8 +3,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ParentService } from '../../services/parent/parent.service';
+import { KeycloakService } from '../../services/keycloak/keycloak.service';
 
 @Component({
   selector: 'app-registration',
@@ -13,7 +15,8 @@ import { ParentService } from '../../services/parent/parent.service';
     MatIconModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ],
   templateUrl: './registration.html',
   styleUrl: './registration.css',
@@ -21,13 +24,14 @@ import { ParentService } from '../../services/parent/parent.service';
 })
 export class Registration {
   private parentService = inject(ParentService);
+  private keycloakService = inject(KeycloakService);
 
   form: FormGroup = new FormGroup({
-    email: new FormControl('email'),
-    firstName: new FormControl('firstName'),
-    lastName: new FormControl('lastName'),
-    username: new FormControl('username'),
-    password: new FormControl('password'),
+    email: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    username: new FormControl(''),
+    password: new FormControl(''),
   });
 
   registerParent() {
@@ -39,5 +43,9 @@ export class Registration {
         console.error('Failed!', error);
       },
     });
+  }
+
+  login() {
+    this.keycloakService.login();
   }
 }

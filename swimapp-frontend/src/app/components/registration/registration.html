@@ -1,30 +1,43 @@
-<form [formGroup]="form">
-  <mat-form-field>
-    <mat-label>email</mat-label>
-    <input
-      matInput
-      placeholder="example@mail.com"
-      formControlName="email"
-      [formGroup]="form"
-      required
-    />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>firstName</mat-label>
-    <input matInput formControlName="firstName" [formGroup]="form" required />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>lastName</mat-label>
-    <input matInput formControlName="lastName" [formGroup]="form" required />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>username</mat-label>
-    <input matInput formControlName="username" [formGroup]="form" required />
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>password</mat-label>
-    <input matInput type="password" formControlName="password" [formGroup]="form" required />
-  </mat-form-field>
+<mat-card appearance="raised">
+  <mat-card-header>
+    <mat-card-title> Swimming Management System </mat-card-title>
+    <mat-card-subtitle> Create New Account </mat-card-subtitle>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>email</mat-label>
+          <input
+            matInput
+            placeholder="example@mail.com"
+            formControlName="email"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>username</mat-label>
+          <input matInput formControlName="username" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>password</mat-label>
+          <input matInput type="password" formControlName="password" required />
+        </mat-form-field>
 
-  <button matButton="tonal" (click)="registerParent()">Register</button>
-</form>
+        <mat-card-actions>
+          <button matButton="tonal" (click)="registerParent()">Register</button>
+        </mat-card-actions>
+        <p>Already have an account?</p>
+        <mat-card-actions>
+          <button matButton="tonal" href="/src/app/components/">Login</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card-header>
+</mat-card>
