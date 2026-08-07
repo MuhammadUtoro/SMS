@@ -1,0 +1,41 @@
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.registration-card {
+  width: 40em;
+}
+
+.registration-card mat-card-header {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+}
+
+mat-form-field {
+  width: 100%
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.card-actions p {
+  text-align: center;
+}

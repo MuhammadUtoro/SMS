@@ -34,6 +34,7 @@ export class Registration {
     password: new FormControl(''),
   });
 
+  // Method to register parent
   registerParent() {
     this.parentService.registerParent(this.form.value).subscribe({
       next: (response) => {
@@ -45,6 +46,7 @@ export class Registration {
     });
   }
 
+  // To login user after registration
   login() {
     this.keycloakService.login();
   }

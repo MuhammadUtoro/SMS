@@ -1,9 +1,21 @@
-<mat-card appearance="raised">
-  <mat-card-header>
-    <mat-card-title> Swimming Management System </mat-card-title>
-    <mat-card-subtitle> Create New Account </mat-card-subtitle>
+<div class="registration-container">
+  <mat-card class="registration-card" appearance="raised">
+    <mat-card-header>
+      <mat-card-title> Swimming Management System </mat-card-title>
+      <mat-card-subtitle> Create New Account </mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>
       <form [formGroup]="form">
+        <div class="name-row">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" required />
+          </mat-form-field>
+        </div>
         <mat-form-field appearance="outline">
           <mat-label>email</mat-label>
           <input
@@ -14,14 +26,6 @@
           />
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>First Name</mat-label>
-          <input matInput formControlName="firstName" required />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Last Name</mat-label>
-          <input matInput formControlName="lastName" required />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
           <mat-label>username</mat-label>
           <input matInput formControlName="username" required />
         </mat-form-field>
@@ -30,14 +34,18 @@
           <input matInput type="password" formControlName="password" required />
         </mat-form-field>
 
-        <mat-card-actions>
-          <button matButton="tonal" (click)="registerParent()">Register</button>
-        </mat-card-actions>
-        <p>Already have an account?</p>
-        <mat-card-actions>
-          <button matButton="tonal" href="/src/app/components/">Login</button>
-        </mat-card-actions>
+        <div class="card-actions">
+          <mat-card-actions>
+            <button matButton="tonal" (click)="registerParent()">
+              Register
+            </button>
+          </mat-card-actions>
+          <p>Already have an account?</p>
+          <mat-card-actions>
+            <button matButton="tonal" (click)="login()">Login</button>
+          </mat-card-actions>
+        </div>
       </form>
     </mat-card-content>
-  </mat-card-header>
-</mat-card>
+  </mat-card>
+</div>
