@@ -13,5 +13,12 @@ export const routes: Routes = [
     path: 'registration-success',
     loadComponent: () => import('./components/registration-success/registration-success').then((m) => m.RegistrationSuccess),
     title: 'Registration Success'
+  },
+  {
+    path: 'parents/me',
+    loadComponent: () => import(
+      './components/parent-profile/parent-profile'
+    ).then((m) => m.ParentProfile),
+    title: "Parent Profile"
   }
 ];
