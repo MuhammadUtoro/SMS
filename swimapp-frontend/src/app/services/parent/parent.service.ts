@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ParentRegistrationRequestDTO } from '../../interfaces/parent-registration-request-dto';
 import { ParentRegistrationResponseDTO } from '../../interfaces/parent-registration-response-dto';
+import { ParentSummaryDto } from '../../interfaces/parent-summary-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,6 @@ export class ParentService {
     );
   }
   getMyProfile() {
-    return this.http.get(this.profileUrl);
+    return this.http.get<ParentSummaryDto>(this.profileUrl);
   }
 }
