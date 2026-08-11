@@ -1,4 +1,4 @@
-import { Injectable, inject, effect } from '@angular/core';
+import { Injectable, inject, effect, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { KeycloakEventType, KEYCLOAK_EVENT_SIGNAL } from 'keycloak-angular';
@@ -16,6 +16,8 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private readonly keycloakEvent = inject(KEYCLOAK_EVENT_SIGNAL);
+  private currentUser = signal<AuthenticatedUser | null>(null);
+  readonly user = this.currentUser.asReadonly();
 
   constructor() {
     effect(() => {
@@ -34,8 +36,9 @@ export class AuthService {
   loadAndNavigate() {
     this.getCurrentUser().subscribe({
       next: (user) => {
+        this.currentUser.set(user);
         if (user.roles.includes('PARENT')) {
-          this.router.navigate(['/parents/me']);
+          this.router.navigate(['/dashboard']);
         } else if (user.roles.includes('TRAINER')) {
           this.router.navigate(['/trainers/me']);
         } else if (user.roles.includes('ADMIN')) {
