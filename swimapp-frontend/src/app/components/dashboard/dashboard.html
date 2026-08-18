@@ -2,4 +2,8 @@
 
 @if (user()?.roles?.includes('PARENT')) {
 <p>Welcome to your parent dashboard!</p>
+
+@if (swimmers.length === 0) {
+<p>You don't have any swimmers yet!</p>
+}
 }

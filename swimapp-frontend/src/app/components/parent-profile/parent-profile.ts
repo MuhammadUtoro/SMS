@@ -29,4 +29,8 @@ export class ParentProfile implements OnInit{
       },
     });
   }
+
+  getMySwimmers() {
+    this.parentService.getMySwimmers();
+  }
 }
