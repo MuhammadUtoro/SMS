@@ -47,10 +47,14 @@ public class SwimmerMapper {
         swimmer.getSwimmerId(),
         swimmer.getFirstName(),
         swimmer.getLastName(),
-        swimmer.getLevel().getLevelName(),
-        swimmer.getCourse().getCourseName(),
-        swimmer.getCourse().getCourseDay(),
-        swimmer.getCourse().getCourseTime());
+        swimmer.getLevel() != null
+            ? swimmer.getLevel().getLevelName() : null,
+        swimmer.getCourse() != null
+            ? swimmer.getCourse().getCourseName() : null,
+        swimmer.getCourse() != null
+            ? swimmer.getCourse().getCourseDay() : null,
+        swimmer.getCourse() != null 
+            ? swimmer.getCourse().getCourseTime() : null);
   }
 
   // Map from entity to DTO - for detailDTO (with IDs only)
