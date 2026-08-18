@@ -3,10 +3,13 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ParentService } from '../../services/parent/parent.service';
 import { MatButtonModule } from '@angular/material/button';
 import { SwimmerSummaryDto } from '../../interfaces/swimmer-summary-dto';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

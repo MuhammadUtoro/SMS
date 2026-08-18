@@ -38,4 +38,10 @@ export const routes: Routes = [
       ),
     title: 'Registration Success',
   },
+  {
+    path: 'parents/create-swimmer',
+    loadComponent: () =>
+      import('./components/swimmer-registration/swimmer-registration').then((m) => m.SwimmerRegistration),
+    title: "Swimmer Registration"
+  },
 ];

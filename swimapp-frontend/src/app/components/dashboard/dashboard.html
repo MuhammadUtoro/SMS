@@ -6,4 +6,34 @@
 @if (swimmers.length === 0) {
 <p>You don't have any swimmers yet!</p>
 }
+<a matButton="tonal" routerLink='/parents/create-swimmer'>
+  <mat-icon>person_add</mat-icon>
+  <span>Add Swimmer</span>
+</a>
 }
+<section class="swimmers-section">
+
+  <h2>My Swimmers</h2>
+
+  @if (swimmers.length === 0) {
+    <p>You don't have any swimmers registered yet.</p>
+  }
+
+  @for (swimmer of swimmers; track swimmer.swimmerId) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{ swimmer.firstName }} {{ swimmer.lastName }}
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>Level: {{ swimmer.levelName ?? 'Not assigned' }}</p>
+        <p>Course Name: {{ swimmer.courseName ?? 'Not assigned' }}</p>
+        <p>Course Day: {{ swimmer.courseDay ?? 'Not assigned' }}</p>
+        <p>Course Time: {{ swimmer.courseTime ?? 'Not assigned' }}</p>
+      </mat-card-content>
+    </mat-card>
+  }
+
+</section>
