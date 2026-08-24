@@ -37,3 +37,9 @@
 
 </section>
 }
+
+@if (user()?.roles?.includes('ADMIN')) {
+  <p>
+   ADMIN Dashboard
+  </p>
+}

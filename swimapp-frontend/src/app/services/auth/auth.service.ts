@@ -40,9 +40,9 @@ export class AuthService {
         if (user.roles.includes('PARENT')) {
           this.router.navigate(['/dashboard']);
         } else if (user.roles.includes('TRAINER')) {
-          this.router.navigate(['/trainers/me']);
+          this.router.navigate(['/dashboard']);
         } else if (user.roles.includes('ADMIN')) {
-          console.log('ADMIN');
+          this.router.navigate(['/dashboard']);
         }
       },
       error: (error) => {
