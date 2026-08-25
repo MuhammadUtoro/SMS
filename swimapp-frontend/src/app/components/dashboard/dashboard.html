@@ -42,4 +42,13 @@
   <p>
    ADMIN Dashboard
   </p>
+
+  <h1>
+    <button matButton="tonal" routerLink="/trainers/register">Register Trainer</button>
+  </h1>
+}
+
+@if (user()?.roles?.includes('TRAINER')) {
+  <p>Hi, Trainer</p>
+
 }
