@@ -15,6 +15,13 @@ export const routes: Routes = [
         title: 'Parent Profile',
       },
       {
+        path: 'trainers/me',
+        loadComponent: () =>
+          import(
+            './components/trainer-profile/trainer-profile'
+          ).then((m) => m.TrainerProfile,)
+      },
+      {
         path: 'dashboard',
         loadComponent: () =>
           import('./components/dashboard/dashboard').then((m) => m.Dashboard),
@@ -44,4 +51,11 @@ export const routes: Routes = [
       import('./components/swimmer-registration/swimmer-registration').then((m) => m.SwimmerRegistration),
     title: "Swimmer Registration"
   },
+  {
+    path: 'trainers/register',
+    loadComponent: () => import (
+      './components/trainer-registration/trainer-registration'
+    ).then((m) => m.TrainerRegistration),
+      title: 'Trainer Registration'
+  }
 ];
