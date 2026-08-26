@@ -22,13 +22,18 @@ export class AuthService {
   constructor() {
     effect(() => {
       const event = this.keycloakEvent();
-      console.log("Keycloak event: ", event);
+      console.log('Keycloak event: ', event);
       if (KeycloakEventType.AuthSuccess) {
-        console.log("Keycloak is ready and authenticated!");
+        console.log('Keycloak is ready and authenticated!');
         this.loadAndNavigate();
       }
-    })
+    });
   }
+  
+  isAuthenticated(): KeycloakEventType {
+    return KeycloakEventType.AuthSuccess;
+  } 
+  
   getCurrentUser() {
     return this.http.get<AuthenticatedUser>('http://localhost:8080/auth/me');
   }
