@@ -1,5 +1,3 @@
-<h1>Dashboard</h1>
-
 @if (user()?.roles?.includes('PARENT')) {
 <p>Welcome to your parent dashboard!</p>
 
@@ -39,13 +37,69 @@
 }
 
 @if (user()?.roles?.includes('ADMIN')) {
-  <p>
-   ADMIN Dashboard
-  </p>
+  <div class="admin-dashboard">
+    <header class="dashboard-header">
+      <div>
+        <p class="eyebrow">ADMINISTRATION</p>
+        <h1>Admin Dashboard</h1>
+        <p>Manage swimmers, trainers, courses and levels</p>
+      </div>
+    </header>
+    <section class="stats-section">
+      <h1>This will show some stats later on</h1>
+    </section>
+    <section class="management-section">
+     <h2>Management</h2>
+     <div class="management-grid">
+      <mat-card class="card-1">
+        <mat-card-header>
+          <mat-card-title>Swimmmers Management</mat-card-title>
+          <mat-card-subtitle>This should be about swimmers management</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h1>Assign level</h1>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card-2">
+        <mat-card-header>
+          <mat-card-title>Trainers Management</mat-card-title>
+          <mat-card-subtitle>This should be about trainers management</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h1>Assign trainer</h1>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card-3">
+        <mat-card-header>
+          <mat-card-title>Courses Management</mat-card-title>
+          <mat-card-subtitle>This should be about courses management</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h1>Manage courses</h1>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="card-4">
+        <mat-card-header>
+          <mat-card-title>Level Management</mat-card-title>
+          <mat-card-subtitle>This should be about level management</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h1>Manage levels</h1>
+        </mat-card-content>
+      </mat-card>
+     </div>
+    </section>
+  </div>
 
-  <h1>
-    <button matButton="tonal" routerLink="/trainers/register">Register Trainer</button>
-  </h1>
+  <section class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="quick-actions-button">
+      <button matButton="tonal">Add Swimmer</button>
+      <button matButton="tonal">Add Trainer</button>
+      <button matButton="tonal">Add Course</button>
+      <button matButton="tonal">Add Level</button>
+    </div>
+  </section>
 }
 
 @if (user()?.roles?.includes('TRAINER')) {
