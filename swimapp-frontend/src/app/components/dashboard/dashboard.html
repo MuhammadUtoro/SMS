@@ -46,7 +46,30 @@
       </div>
     </header>
     <section class="stats-section">
-      <h1>This will show some stats later on</h1>
+      <mat-card class="swimmer-stats">
+        <mat-card-header>
+          <mat-card-title>Total swimmers</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>Some dynamic data later</mat-card-content>
+      </mat-card>
+      <mat-card class="trainer-stats">
+        <mat-card-header>
+          <mat-card-title>Total trainers</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>Some dynamic data later</mat-card-content>
+      </mat-card>
+      <mat-card class="course-stats">
+        <mat-card-header>
+          <mat-card-title>Course info</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>Some dynamic data later</mat-card-content>
+      </mat-card>
+      <mat-card class="level-stats">
+        <mat-card-header>
+          <mat-card-title>Level info</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>Some dynamic data later</mat-card-content>
+      </mat-card>
     </section>
     <section class="management-section">
      <h2>Management</h2>
@@ -104,5 +127,4 @@
 
 @if (user()?.roles?.includes('TRAINER')) {
   <p>Hi, Trainer</p>
-
 }

@@ -4,6 +4,11 @@
   gap: 1rem;
 }
 
+.stats-section {
+  display: flex;
+  justify-content: space-between;
+}
+
 .quick-actions-button {
   display: flex;
   justify-content: space-between;
