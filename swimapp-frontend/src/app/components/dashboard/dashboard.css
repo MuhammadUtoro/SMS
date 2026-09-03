@@ -13,3 +13,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+.trainer-dashboard {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 1rem;
+}

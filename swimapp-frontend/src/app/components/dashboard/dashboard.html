@@ -126,5 +126,34 @@
 }
 
 @if (user()?.roles?.includes('TRAINER')) {
-  <p>Hi, Trainer</p>
+  <p>Welcome to your trainer dashboard</p>
+  <section class="trainer-dashboard">
+    <mat-card class="trainer-course">
+      <mat-card-header>
+        <mat-card-title>My course</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Some dynamic data</p>
+        <p>Also some quick actions button later</p>
+      </mat-card-content>
+    </mat-card> 
+    <mat-card class="trainer-attendance">
+      <mat-card-header>
+        <mat-card-title>Attendance</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Some dynamic data</p>
+        <p>Also some quick actions button later</p>
+      </mat-card-content>
+    </mat-card> 
+    <mat-card class="trainer-settings">
+      <mat-card-header>
+        <mat-card-title>Settings</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Some dynamic data</p>
+        <p>Also some quick actions button later</p>
+      </mat-card-content>
+    </mat-card> 
+  </section>
 }
