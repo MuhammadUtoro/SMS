@@ -43,10 +43,9 @@ public class TrainerMapper {
         trainer.getFirstName(),
         trainer.getLastName(),
         trainer.getCourses().stream()
-        .map(
-          courseMapper::toDetailDTO
-          ).toList()
-        );
+            .map(
+                courseMapper::toDetailDTO)
+            .toList());
   }
 
   // Update Trainer Info
