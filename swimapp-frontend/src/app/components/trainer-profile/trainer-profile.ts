@@ -1,11 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { TrainerService } from '../../services/trainer/trainer.service';
+import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-trainer-profile',
-  imports: [],
+  imports: [ MatCardModule, MatDividerModule, MatButtonModule ],
   templateUrl: './trainer-profile.html',
   styleUrl: './trainer-profile.css',
 })
-export class TrainerProfile {
+export class TrainerProfile implements OnInit{
+
+  private trainerService: TrainerService = inject(TrainerService);
+
+  trainer = signal<TrainerSummaryDto | null>(null);
+
+  ngOnInit(): void {
+    this.trainerService.getMyProfile().subscribe({
+      next: (trainer) => {
+        this.trainer.set(trainer);
+      },
+      error: (error) => {
+        console.log("Failed to load profile", error);
+      }
+    });
+  }
 
 }

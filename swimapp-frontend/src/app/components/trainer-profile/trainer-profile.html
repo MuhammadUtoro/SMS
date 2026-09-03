@@ -1,1 +1,57 @@
-<p>trainer-profile works!</p>
+<div class="profile-page">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">ACCOUNT</p>
+      <h1> My Profile </h1>
+      <p class="page-description"> Manage your personal information and account </p>
+    </div>
+  </header>
+
+  <main class="profile-content">
+    <mat-card class="profile-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="profile-avatar">
+          {{ trainer()?.firstName?.charAt(0)}}
+        </div>
+        <mat-card-title> {{ trainer()?.firstName }} {{ trainer()?.lastName }} </mat-card-title>
+        <mat-card-subtitle> Trainer account </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <section class="profile-section">
+          <h2>Personal Information </h2>
+          <div class="profile-grid">
+            <div class="profile-field">
+              <span class="field-label">First Name: </span>
+              <span class="field-value"> {{ trainer()?.firstName }} </span>
+            </div>
+
+            <div class="profile-field">
+                <span class="field-label">Last Name:  </span>
+                <span class="field-value"> {{ trainer()?.lastName }} </span>
+            </div>
+            @for (course of trainer()?.courses ?? []; track course.courseName) {
+          <div class="profile-field">
+            <span class="field-label">Course:</span>
+            <span class="field-value">
+              {{ course.courseName }} - {{ course.courseDay }}, {{ course.courseTime }}
+            </span>
+          </div>
+            }
+
+          </div>
+        </section>
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-actions class="profile-actions">
+       <button matButton="tonal">
+        Edit profile
+       </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </main>
+</div>
