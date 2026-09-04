@@ -5,12 +5,32 @@ import { Home } from './pages/home/home';
 export const routes: Routes = [
   {
     path: '',
-    component: Home
+    component: Home,
   },
   {
     path: '',
     component: Layout,
     children: [
+      {
+        path: 'trainers/register',
+        loadComponent: () =>
+          import('./components/trainer-registration/trainer-registration').then(
+            (m) => m.TrainerRegistration,
+          ),
+        title: 'Trainer Registration',
+      },
+      {
+        path: 'courses',
+        loadComponent: () =>
+          import('./pages/course-form/course-form').then((m) => m.CourseForm),
+        title: 'Create Course',
+      },
+      {
+        path: 'levels',
+        loadComponent: () =>
+          import('./pages/level-form/level-form').then((m) => m.LevelForm),
+        title: 'Create Level',
+      },
       {
         path: 'parents/me',
         loadComponent: () =>
@@ -20,11 +40,27 @@ export const routes: Routes = [
         title: 'Parent Profile',
       },
       {
+        path: 'parents/create-swimmer',
+        loadComponent: () =>
+          import('./components/swimmer-registration/swimmer-registration').then(
+            (m) => m.SwimmerRegistration,
+          ),
+        title: 'Swimmer Registration',
+      },
+      {
+        path: 'swimmers',
+        loadComponent: () =>
+          import('./components/swimmer-registration/swimmer-registration').then(
+            (m) => m.SwimmerRegistration,
+          ),
+        title: 'Swimmer Registration',
+      },
+      {
         path: 'trainers/me',
         loadComponent: () =>
-          import(
-            './components/trainer-profile/trainer-profile'
-          ).then((m) => m.TrainerProfile,)
+          import('./components/trainer-profile/trainer-profile').then(
+            (m) => m.TrainerProfile,
+          ),
       },
       {
         path: 'dashboard',
@@ -50,17 +86,4 @@ export const routes: Routes = [
       ),
     title: 'Registration Success',
   },
-  {
-    path: 'parents/create-swimmer',
-    loadComponent: () =>
-      import('./components/swimmer-registration/swimmer-registration').then((m) => m.SwimmerRegistration),
-    title: "Swimmer Registration"
-  },
-  {
-    path: 'trainers/register',
-    loadComponent: () => import (
-      './components/trainer-registration/trainer-registration'
-    ).then((m) => m.TrainerRegistration),
-      title: 'Trainer Registration'
-  }
 ];
