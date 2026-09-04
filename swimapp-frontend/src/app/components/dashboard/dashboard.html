@@ -117,10 +117,10 @@
   <section class="quick-actions">
     <h2>Quick Actions</h2>
     <div class="quick-actions-button">
-      <button matButton="tonal">Add Swimmer</button>
-      <button matButton="tonal">Add Trainer</button>
-      <button matButton="tonal">Add Course</button>
-      <button matButton="tonal">Add Level</button>
+      <button matButton="tonal" routerLink='/swimmers'>Add Swimmer</button>
+      <button matButton="tonal" routerLink='/trainers/register'>Add Trainer</button>
+      <button matButton="tonal" routerLink='/courses'>Add Course</button>
+      <button matButton="tonal" routerLink='/levels'>Add Level</button>
     </div>
   </section>
 }
@@ -136,7 +136,7 @@
         <p>Some dynamic data</p>
         <p>Also some quick actions button later</p>
       </mat-card-content>
-    </mat-card> 
+    </mat-card>
     <mat-card class="trainer-attendance">
       <mat-card-header>
         <mat-card-title>Attendance</mat-card-title>
@@ -145,7 +145,7 @@
         <p>Some dynamic data</p>
         <p>Also some quick actions button later</p>
       </mat-card-content>
-    </mat-card> 
+    </mat-card>
     <mat-card class="trainer-settings">
       <mat-card-header>
         <mat-card-title>Settings</mat-card-title>
@@ -154,6 +154,6 @@
         <p>Some dynamic data</p>
         <p>Also some quick actions button later</p>
       </mat-card-content>
-    </mat-card> 
+    </mat-card>
   </section>
 }
