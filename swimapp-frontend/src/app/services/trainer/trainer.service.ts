@@ -9,9 +9,14 @@ import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
   providedIn: 'root',
 })
 export class TrainerService {
-  registerUrl = 'http://localhost:8080/trainers/register'
-  profileUrl = 'http://localhost:8080/trainers/me'
+  registerUrl = 'http://localhost:8080/trainers/register';
+  profileUrl = 'http://localhost:8080/trainers/me';
+  getTrainersList = 'http://localhost:8080/trainers';
   private http: HttpClient = inject(HttpClient);
+
+  getAllTrainers() {
+    return this.http.get<TrainerSummaryDto[]>(this.getTrainersList);
+  }
 
   registerTrainer(dto: TrainerRegistrationDTO) {
     return this.http.post<TrainerRegistrationDTO>(this.registerUrl, dto);
