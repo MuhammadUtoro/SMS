@@ -21,7 +21,9 @@ export class Dashboard implements OnInit{
   swimmers: SwimmerSummaryDto[] = [];
 
   ngOnInit(): void {
-    this.getMySwimmers();
+    if (this.user()?.roles?.includes('PARENT')) {
+      this.getMySwimmers();
+    }
   }
 
   getMySwimmers() {
