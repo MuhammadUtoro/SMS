@@ -40,6 +40,7 @@ public class TrainerMapper {
       return null;
     }
     return new TrainerSummaryDTO(
+        trainer.getTrainerId(),
         trainer.getFirstName(),
         trainer.getLastName(),
         trainer.getCourses().stream()
