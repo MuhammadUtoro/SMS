@@ -11,6 +11,8 @@ import { CourseService } from '../../services/course/course.service';
 import { TrainerService } from '../../services/trainer/trainer.service';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
+import { LevelSummaryDto } from '../../interfaces/level-summary-dto';
+import { LevelService } from '../../services/level/level.service';
 
 @Component({
   selector: 'app-course-form',
@@ -32,13 +34,47 @@ export class CourseForm implements OnInit{
   private courseService: CourseService = inject(CourseService);
   private router: Router = inject(Router);
   private trainerService: TrainerService = inject(TrainerService);
+  private levelService: LevelService = inject(LevelService);
 
   trainers: TrainerSummaryDto[] = [];
+  levels: LevelSummaryDto[] = [];
+
+  form: FormGroup = new FormGroup({
+    levelId: new FormControl(''),
+    trainerId: new FormControl(''),
+    courseName: new FormControl(''),
+    courseDay: new FormControl(''),
+    courseTime: new FormControl(''),
+  })
 
   ngOnInit() {
     this.trainerService.getAllTrainers().subscribe({
       next: (trainers) => {
         this.trainers = trainers;
+      }
+    });
+    this.levelService.getAllLevels().subscribe({
+      next: (levels) => {
+        this.levels = levels;
+      }
+    });
+  }
+
+  createCourse() {
+    const time = this.form.value.courseTime;
+
+    const request = {
+      ...this.form.value,
+      courseTime: time
+      ? `${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}:00` : null
+    }
+    this.courseService.createCourse(request).subscribe({
+      next: (response) => {
+        console.log('Success', response);
+        this.router.navigate(['/dashboard']);
+      },
+      error: (error) => {
+        console.log('Failed to create course', error);
       }
     });
   }
@@ -53,11 +89,11 @@ export class CourseForm implements OnInit{
     'Sunday'
   ]
 
-  form: FormGroup = new FormGroup({
-    levelId: new FormControl(''),
-    trainerId: new FormControl(''),
-    courseName: new FormControl(''),
-    courseDay: new FormControl(''),
-    courseTime: new FormControl(''),
-  })
+  courses: string[] = [
+    'Beginner',
+    'Intermediate',
+    'Advance',
+    'Competitive'
+  ]
+
 }
