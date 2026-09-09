@@ -27,7 +27,7 @@ export class Registration {
   private parentService = inject(ParentService);
   private keycloakService = inject(KeycloakService);
   private router = inject(Router);
-  
+
   form: FormGroup = new FormGroup({
     email: new FormControl(''),
     firstName: new FormControl(''),
