@@ -7,10 +7,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { SwimmerService } from '../../services/swimmer/swimmer.service';
+import { LevelList } from '../../pages/level-list/level-list';
+import { CourseList } from '../../pages/course-list/course-list';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule],
+  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule, LevelList, CourseList],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
