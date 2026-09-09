@@ -1,1 +1,9 @@
-<p>course-list works!</p>
+<div class="course-list-container">
+  @for (course of courses(); track course.courseId) {
+    <ol>
+     <h3>
+      {{ course.courseId }}: {{ course.courseName}}, {{ course.courseDay }} - {{ course.courseTime }}
+     </h3>
+    </ol>
+  }
+</div>

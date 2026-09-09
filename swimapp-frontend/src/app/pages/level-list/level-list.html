@@ -1,1 +1,9 @@
-<p>level-list works!</p>
+<div class="level-list-container">
+  @for (level of levels(); track level.levelId) {
+    <ol>
+      <h3>
+        {{ level.levelName }}
+      </h3>
+    </ol>
+  }
+</div>
