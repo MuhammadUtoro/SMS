@@ -3,16 +3,18 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ParentService } from '../../services/parent/parent.service';
 import { MatButtonModule } from '@angular/material/button';
 import { SwimmerSummaryDto } from '../../interfaces/swimmer-summary-dto';
+import { CourseSummaryDto } from '../../interfaces/course-summary-dto';
+import { LevelSummaryDto } from '../../interfaces/level-summary-dto';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { SwimmerService } from '../../services/swimmer/swimmer.service';
-import { LevelList } from '../../pages/level-list/level-list';
-import { CourseList } from '../../pages/course-list/course-list';
+import { CourseService } from '../../services/course/course.service';
+import { LevelService } from '../../services/level/level.service';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule, LevelList, CourseList],
+  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -20,10 +22,14 @@ export class Dashboard implements OnInit{
   private authService: AuthService = inject(AuthService);
   private parentService: ParentService = inject(ParentService);
   private swimmerService: SwimmerService = inject(SwimmerService);
+  private courseService: CourseService = inject(CourseService);
+  private levelService: LevelService = inject(LevelService);
 
   user = this.authService.user;
   swimmers: SwimmerSummaryDto[] = [];
   swimmersList = signal<SwimmerSummaryDto[]>([]);
+  courses = signal<CourseSummaryDto[]>([]);
+  levels = signal<LevelSummaryDto[]>([]);
 
   ngOnInit(): void {
     if (this.user()?.roles?.includes('PARENT')) {
@@ -31,6 +37,8 @@ export class Dashboard implements OnInit{
     }
     if (this.user()?.roles?.includes('ADMIN')) {
       this.getSwimmersList();
+      this.getCoursesList();
+      this.getLevelsList();
     }
   }
 
@@ -54,6 +62,28 @@ export class Dashboard implements OnInit{
       },
       error: error => {
         console.log("Failed to load swimmers", error);
+      }
+    });
+  }
+
+  getCoursesList() {
+    this.courseService.getAllCourses().subscribe({
+      next: (courses) => {
+        this.courses.set(courses);
+      },
+      error: error => {
+        console.log("Failed to load courses", error);
+      }
+    });
+  }
+
+  getLevelsList() {
+    this.levelService.getAllLevels().subscribe({
+      next: (levels) => {
+        this.levels.set(levels);
+      },
+      error: error => {
+        console.log("Failed to load levels", error);
       }
     });
   }
