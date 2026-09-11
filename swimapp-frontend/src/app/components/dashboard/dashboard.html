@@ -111,6 +111,9 @@
             </div>
           }
         </mat-card-content>
+        <mat-card-actions>
+          <button matButton="tonal" routerLink="/course-list">View all courses</button>
+        </mat-card-actions>
       </mat-card>
       <mat-card class="card-4">
         <mat-card-header>
@@ -122,12 +125,14 @@
               <strong>{{ level.levelId }}</strong>
 
               <span>
-                {{ level.levelName }}
-                . {{ level.requirements }}
+                {{ level.levelName }}:
               </span>
             </div>
           }
         </mat-card-content>
+        <mat-card-actions>
+          <button matButton="tonal" routerLink="/level-list">View all levels</button>
+        </mat-card-actions>
       </mat-card>
      </div>
     </section>
