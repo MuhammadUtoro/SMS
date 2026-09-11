@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Layout } from './components/layout/layout';
 import { Home } from './pages/home/home';
+import { Title } from '@angular/platform-browser';
 
 export const routes: Routes = [
   {
@@ -26,10 +27,20 @@ export const routes: Routes = [
         title: 'Create Course',
       },
       {
+        path: 'course-list',
+        loadComponent: () => import('./pages/course-list/course-list').then((m) => m.CourseList),
+        title: 'All Courses',
+      },
+      {
         path: 'levels',
         loadComponent: () =>
           import('./pages/level-form/level-form').then((m) => m.LevelForm),
         title: 'Create Level',
+      },
+      {
+        path: 'level-list',
+        loadComponent: () => import('./pages/level-list/level-list').then((m) => m.LevelList),
+        title: 'All levels'
       },
       {
         path: 'parents/me',
