@@ -4,11 +4,12 @@ import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-trainer-profile',
-  imports: [ MatCardModule, MatDividerModule, MatButtonModule ],
+  imports: [ MatCardModule, MatDividerModule, MatButtonModule, RouterLink ],
   templateUrl: './trainer-profile.html',
   styleUrl: './trainer-profile.css',
 })
