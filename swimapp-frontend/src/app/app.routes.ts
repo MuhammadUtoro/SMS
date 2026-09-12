@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { Layout } from './components/layout/layout';
 import { Home } from './pages/home/home';
-import { Title } from '@angular/platform-browser';
 
 export const routes: Routes = [
   {
@@ -51,6 +50,11 @@ export const routes: Routes = [
         title: 'Parent Profile',
       },
       {
+        path: 'parents/me/edit',
+        loadComponent: () => import('./components/registration/registration').then((m) => m.Registration),
+        title: 'Edit Profile'
+      },
+      {
         path: 'parents/create-swimmer',
         loadComponent: () =>
           import('./components/swimmer-registration/swimmer-registration').then(
@@ -72,6 +76,13 @@ export const routes: Routes = [
           import('./components/trainer-profile/trainer-profile').then(
             (m) => m.TrainerProfile,
           ),
+        title: 'Trainer Profile',
+      },
+      {
+        path: 'trainers/me/edit',
+        loadComponent: () =>
+          import('./components/trainer-registration/trainer-registration').then((m) => m.TrainerRegistration),
+        title: 'Edit Profile'
       },
       {
         path: 'dashboard',
@@ -88,11 +99,6 @@ export const routes: Routes = [
         (m) => m.Registration,
       ),
     title: 'Registration',
-  },
-  {
-    path: 'parents/me/edit',
-    loadComponent: () => import('./components/registration/registration').then((m) => m.Registration),
-    title: 'Edit Profile'
   },
   {
     path: 'registration-success',
