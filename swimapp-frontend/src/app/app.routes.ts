@@ -90,6 +90,11 @@ export const routes: Routes = [
     title: 'Registration',
   },
   {
+    path: 'parents/me/edit',
+    loadComponent: () => import('./components/registration/registration').then((m) => m.Registration),
+    title: 'Edit Profile'
+  },
+  {
     path: 'registration-success',
     loadComponent: () =>
       import('./components/registration-success/registration-success').then(
