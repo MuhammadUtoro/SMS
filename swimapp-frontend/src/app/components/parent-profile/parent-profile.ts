@@ -4,11 +4,12 @@ import { ParentSummaryDto } from '../../interfaces/parent-summary-dto';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-parent-profile',
-  imports: [ MatCardModule, MatDividerModule, MatButtonModule ],
+  imports: [ MatCardModule, MatDividerModule, MatButtonModule, RouterLink ],
   templateUrl: './parent-profile.html',
   styleUrl: './parent-profile.css',
 })
