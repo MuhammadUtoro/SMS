@@ -2,6 +2,7 @@ import { Injectable, inject} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TrainerRegistrationDTO } from '../../interfaces/trainer-registration-request-dto';
 import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
+import { UpdateTrainerInfoDto } from '../../interfaces/update-trainer-info-dto';
 
 
 
@@ -11,6 +12,7 @@ import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
 export class TrainerService {
   registerUrl = 'http://localhost:8080/trainers/register';
   profileUrl = 'http://localhost:8080/trainers/me';
+  updateMyProfileUrl = 'http://localhost:8080/trainers/me';
   getTrainersList = 'http://localhost:8080/trainers';
   private http: HttpClient = inject(HttpClient);
 
@@ -24,5 +26,9 @@ export class TrainerService {
 
   getMyProfile() {
     return this.http.get<TrainerSummaryDto>(this.profileUrl);
+  }
+
+  updateMyProfile(dto: UpdateTrainerInfoDto) {
+    return this.http.put<UpdateTrainerInfoDto>(this.updateMyProfileUrl, dto);
   }
 }
