@@ -97,6 +97,7 @@ public class ParentService {
     }
 
     // Update Parent by Admin - PUT
+    @Transactional
     public ParentSummaryDTO UpdateParentInfoEntity(Long parentId, UpdateParentInfoDTO dto) {
         Parent parent = parentRepository.findParentById(parentId);
 
@@ -109,6 +110,7 @@ public class ParentService {
     }
 
     // Update Parent by Parent- PUT
+    @Transactional
     public ParentSummaryDTO updateMyProfile(UpdateParentInfoDTO dto) {
         UUID keycloakUserId = UUID.fromString(jwt.getSubject());
 
@@ -121,6 +123,9 @@ public class ParentService {
         if (parent == null) {
             throw new NotFoundException("User not found!");
         }
+
+        // Update the email on the keycloak
+        keycloakAdminService.updateEmail(keycloakUserId, dto.email());
 
         parentMapper.UpdateParentInfoEntity(parent, dto);
         return parentMapper.toSummaryDTO(parent);

@@ -77,6 +77,21 @@ public class KeycloakAdminService {
         return UUID.fromString(id);
     }
 
+    // Updating Email for Parent
+    public void updateEmail(UUID keycloakUserId, String email) {
+        UserRepresentation user = keycloak.realm("dio-project")
+                .user()
+                .get(keycloakUserId.toString())
+                .toRepresentation();
+
+        user.setEmail(email);
+        keycloak.realm("dio-project")
+                .user()
+                .get(keycloakUserId.toString())
+                .update(user);
+
+    }
+
     // Delete user
     public void deleteUser(UUID keycloakUserId) {
         keycloak.realm("dio-project")
