@@ -2,38 +2,58 @@
   <mat-card class="registration-card" appearance="raised">
     <mat-card-header>
       <mat-card-title>Swimming Management System</mat-card-title>
-      <mat-card-subtitle>Register New Trainer</mat-card-subtitle>
+      <mat-card-subtitle>
+        @if (!isEditMode()) { Register a new trainer } @else { Edit my profile }
+      </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
+      @if (!isEditMode()) {
       <form [formGroup]="form">
-        @if (!isEditMode()) {
-          <mat-form-field appearance="outline">
-            <mat-label>email</mat-label>
-            <input matInput type="email" placeholder="example@mail.com" formControlName="email" required />
-          </mat-form-field>
-        }
+        <mat-form-field appearance="outline">
+          <mat-label>email</mat-label>
+          <input
+            matInput
+            type="email"
+            placeholder="example@mail.com"
+            formControlName="email"
+            required
+          />
+        </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
-          <input matInput formControlName="firstName" required/>
+          <input matInput formControlName="firstName" required />
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Last Name</mat-label>
           <input matInput formControlName="lastName" required />
         </mat-form-field>
-        @if (!isEditMode()) {
-          <mat-form-field appearance="outline">
-            <mat-label>username</mat-label>
-            <input matInput formControlName="username" required />
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>password</mat-label>
-            <input matInput type="password" formControlName="password" required />
-          </mat-form-field>
-        }
+        <mat-form-field appearance="outline">
+          <mat-label>username</mat-label>
+          <input matInput formControlName="username" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>password</mat-label>
+          <input matInput type="password" formControlName="password" required />
+        </mat-form-field>
       </form>
+      <mat-card-actions>
+        <button matButton="tonal" (click)="registerTrainer()">Register</button>
+      </mat-card-actions>
+      } @else {
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required />
+        </mat-form-field>
+      </form>
+      <mat-card-actions>
+        <button matButton="tonal" (click)="updateMyProfile()">Submit</button>
+      </mat-card-actions>
+      }
     </mat-card-content>
-    <mat-card-actions>
-      <button matButton="tonal" (click)=registerTrainer()>Submit</button>
-    </mat-card-actions>
   </mat-card>
 </div>

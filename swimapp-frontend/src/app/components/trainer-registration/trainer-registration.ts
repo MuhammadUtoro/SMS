@@ -58,4 +58,16 @@ export class TrainerRegistration implements OnInit{
       }
     });
   }
+
+  updateMyProfile() {
+    this.trainerService.updateMyProfile(this.form.value).subscribe({
+      next: (response) => {
+        console.log("Updateed!", response);
+        this.router.navigate(['/trainers/me'])
+      },
+      error: (error) => {
+        console.log('Failed to update profile!', error);
+      }
+    });
+  }
 }
