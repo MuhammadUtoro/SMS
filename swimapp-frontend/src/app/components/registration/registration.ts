@@ -81,9 +81,6 @@ export class Registration implements OnInit{
       next: (parent) => {
         this.form.patchValue({
           email: parent.email,
-          firstName: parent.firstName,
-          lastName: parent.lastName,
-          username: parent.username
         });
       },
       error: (error) => {
