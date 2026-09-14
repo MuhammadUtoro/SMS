@@ -85,7 +85,7 @@ public class TrainerResource {
     return Response.ok(trainerDTO).build();
   }
 
-  @POST
+  @PUT
   @Path("/me")
   @RolesAllowed("TRAINER")
   public Response updateMyProfile(UpdateTrainerInfoDTO dto) {
