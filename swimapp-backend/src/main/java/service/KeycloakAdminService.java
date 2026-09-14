@@ -80,13 +80,13 @@ public class KeycloakAdminService {
     // Updating Email for Parent
     public void updateEmail(UUID keycloakUserId, String email) {
         UserRepresentation user = keycloak.realm("dio-project")
-                .user()
+                .users()
                 .get(keycloakUserId.toString())
                 .toRepresentation();
 
         user.setEmail(email);
         keycloak.realm("dio-project")
-                .user()
+                .users()
                 .get(keycloakUserId.toString())
                 .update(user);
 
