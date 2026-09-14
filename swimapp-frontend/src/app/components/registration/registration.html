@@ -37,9 +37,12 @@
         }
         <div class="card-actions">
           <mat-card-actions>
-            <button matButton="tonal" (click)="registerParent()">
-              Register
-            </button>
+            @if (!isEditMode()) {
+              <button matButton="tonal" (click)="registerParent()">
+                Register
+              </button>
+            }
+            <button matButton="tonal" (click)="updateMyProfile()">Submit</button>
           </mat-card-actions>
           <p>Already have an account?</p>
           <mat-card-actions>
