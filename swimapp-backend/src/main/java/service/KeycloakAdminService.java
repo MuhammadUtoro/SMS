@@ -92,6 +92,21 @@ public class KeycloakAdminService {
 
     }
 
+    // Updating First and Last Name for trainer
+    public void updateTrainerInfo(UUID keycloakUserId, String firstName, String lastName) {
+        UserRepresentation user = keycloak.realm("dio-project")
+                .users()
+                .get(keycloakUserId.toString())
+                .toRepresentation();
+        
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        keycloak.realm("dio-project")
+                .users()
+                .get(keycloakUserId.toString())
+                .update(user);
+    }
+
     // Delete user
     public void deleteUser(UUID keycloakUserId) {
         keycloak.realm("dio-project")
