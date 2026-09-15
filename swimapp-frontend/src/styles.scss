@@ -4,8 +4,8 @@
 html {
   @include mat.theme((
     typography: (
-      plain-family: 'Montserrat',
-      brand-family: 'Montserrat',
+      plain-family: 'Abel',
+      brand-family: 'Abel',
       regular-weight: 300
     ),
   ));
@@ -19,7 +19,7 @@ body {
   color: var(--mat-sys-on-surface);
 
   // Use Inter
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Abel', sans-serif;
   font-weight: 300;
 
   // Reset the user agent margin.
