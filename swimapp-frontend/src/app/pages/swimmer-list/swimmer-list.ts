@@ -1,10 +1,12 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { SwimmerService } from '../../services/swimmer/swimmer.service';
 import { SwimmerSummaryDto } from '../../interfaces/swimmer-summary-dto';
+import { SwimmerDetailDto } from '../../interfaces/swimmer-detail-dto';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-swimmer-list',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './swimmer-list.html',
   styleUrl: './swimmer-list.css',
 })

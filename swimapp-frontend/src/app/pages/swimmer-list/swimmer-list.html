@@ -4,8 +4,7 @@
     <li>
       {{ swimmer.swimmerId }}: {{ swimmer.firstName }} {{ swimmer.lastName }}:
       {{ swimmer.courseName }}
-      <a class="view-details" href="/#">View more details</a
-      ><span><a class="edit" href="/#">edit</a></span>
+      <a class="view-details" [routerLink]="['/swimmers', swimmer.swimmerId]">View details</a>
     </li>
   </ul>
   }
