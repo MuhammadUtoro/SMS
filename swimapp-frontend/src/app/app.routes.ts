@@ -42,6 +42,11 @@ export const routes: Routes = [
         title: 'All levels'
       },
       {
+        path: 'swimmers/:swimmerId',
+        loadComponent: () => import('./pages/swimmer-details/swimmer-details').then((m) => m.SwimmerDetails),
+        title: 'Swimmer Details'
+      },
+      {
         path: 'swimmer-list',
         loadComponent: () => import('./pages/swimmer-list/swimmer-list').then((m) => m.SwimmerList),
         title: 'All swimmers'
