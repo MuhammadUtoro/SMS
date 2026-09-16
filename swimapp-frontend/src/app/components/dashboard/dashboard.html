@@ -62,32 +62,41 @@
       </mat-card>
       <mat-card class="course-stats">
         <mat-card-header>
-          <mat-card-title>Course info</mat-card-title>
+          <mat-card-title>Total course</mat-card-title>
         </mat-card-header>
-        <mat-card-content>Some dynamic data later</mat-card-content>
+        <mat-card-content>
+          {{ courses().length }}
+        </mat-card-content>
       </mat-card>
       <mat-card class="level-stats">
         <mat-card-header>
-          <mat-card-title>Level info</mat-card-title>
+          <mat-card-title>Total level</mat-card-title>
         </mat-card-header>
-        <mat-card-content>Some dynamic data later</mat-card-content>
+        <mat-card-content>
+          {{ levels().length }}
+        </mat-card-content>
       </mat-card>
     </section>
     <section class="management-section">
      <h2>Management</h2>
      <div class="management-grid">
       <mat-card class="card-1">
-        <mat-card-header> <mat-card-title>Swimmmers Management</mat-card-title>
-          <mat-card-subtitle>This should be about swimmers management</mat-card-subtitle>
+        <mat-card-header> <mat-card-title>Manage swimmers</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <h1>Assign level</h1>
+          @for (list of swimmersList().slice(0, 3); track list.swimmerId) {
+          <ul>
+            <li> {{ list.swimmerId }}. {{ list.firstName }} {{ list.lastName }}: {{ list.levelName }}</li>
+          </ul>
+          }
         </mat-card-content>
+        <mat-card-actions>
+          <button matButton="tonal" routerLink='/swimmer-list'>View all swimmers</button>
+        </mat-card-actions>
       </mat-card>
       <mat-card class="card-2">
         <mat-card-header>
-          <mat-card-title>Trainers Management</mat-card-title>
-          <mat-card-subtitle>This should be about trainers management</mat-card-subtitle>
+          <mat-card-title>Manage trainers</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <h1>Assign trainer</h1>
