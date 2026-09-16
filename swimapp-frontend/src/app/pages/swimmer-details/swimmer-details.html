@@ -1,0 +1,9 @@
+<main class="swimmer-details-container">
+  @if (swimmerDetails(); as swimmer) {
+    <h1>{{ swimmer.firstName }} {{ swimmer.lastName }}</h1>
+    <p>ID: {{ swimmer.swimmerId }}</p>
+    <p>Course: {{ swimmer.courseId }}</p>
+    <p>Level: {{ swimmer.levelId }}</p>
+    <p>Parent: {{ swimmer.parentEmail }}</p>
+  }
+</main>
