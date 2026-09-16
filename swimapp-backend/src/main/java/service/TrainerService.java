@@ -134,6 +134,8 @@ public class TrainerService {
         if (trainer == null) {
             throw new NotFoundException("User not found!");
         }
+        keycloakAdminService.updateTrainerInfo(keycloakUserId, dto.firstName(), dto.lastName());
+
         trainerMapper.updateTrainerInfoEntity(trainer, dto);
 
         return trainerMapper.toSummaryDTO(trainer); 
