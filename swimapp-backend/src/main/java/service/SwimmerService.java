@@ -106,20 +106,6 @@ public class SwimmerService {
         }
         swimmer.setParent(parent);
 
-        // Level
-        Level level = levelRepository.findLevelById(dto.levelId());
-        if (level == null) {
-            throw new NotFoundException("Level not found!");
-        }
-        swimmer.setLevel(level);
-
-        // Course
-        Course course = courseRepository.findCourseById(dto.courseId());
-        if (course == null) {
-            throw new NotFoundException("Course not found!");
-        }
-        swimmer.setCourse(course);
-
         // Return SwimmerDetailDTO
         return swimmerMapper.toDetailDTO(swimmer);
     }
