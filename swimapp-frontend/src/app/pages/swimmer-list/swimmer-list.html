@@ -1,0 +1,13 @@
+<main class="swimmer-list-container">
+  @for (swimmer of swimmers(); track swimmer.swimmerId) {
+    <ul>
+      <li>
+        {{ swimmer.swimmerId }}: {{ swimmer.firstName  }} {{ swimmer.lastName
+        }}: {{ swimmer.courseName }} <a
+                                       class="view-details" href="/#">View more
+                                       details</a><span><a class="edit"
+                                         href="/#">edit</a></span>
+      </li>
+    </ul>
+  }
+</main>
