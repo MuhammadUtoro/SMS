@@ -42,6 +42,11 @@ export const routes: Routes = [
         title: 'All levels'
       },
       {
+        path: 'swimmer-list',
+        loadComponent: () => import('./pages/swimmer-list/swimmer-list').then((m) => m.SwimmerList),
+        title: 'All swimmers'
+      },
+      {
         path: 'parents/me',
         loadComponent: () =>
           import('./components/parent-profile/parent-profile').then(
