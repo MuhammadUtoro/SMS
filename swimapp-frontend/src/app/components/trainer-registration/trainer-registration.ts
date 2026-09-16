@@ -62,7 +62,7 @@ export class TrainerRegistration implements OnInit{
   updateMyProfile() {
     this.trainerService.updateMyProfile(this.form.value).subscribe({
       next: (response) => {
-        console.log("Updateed!", response);
+        console.log("Updated!", response);
         this.router.navigate(['/trainers/me'])
       },
       error: (error) => {
