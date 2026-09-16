@@ -4,9 +4,9 @@
 html {
   @include mat.theme((
     typography: (
-      plain-family: 'Abel',
-      brand-family: 'Abel',
-      regular-weight: 300
+      plain-family: 'Iosevka Charon',
+      brand-family: 'Iosevka Charon',
+      regular-weight: 400
     ),
   ));
 
@@ -18,9 +18,10 @@ body {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
 
-  // Use Inter
-  font-family: 'Abel', sans-serif;
-  font-weight: 300;
+  // Use Iosevka
+  font-family: 'Iosevka Charon', monospace;
+  font-weight: 400;
+  font-style: normal;
 
   // Reset the user agent margin.
   margin: 1rem;
