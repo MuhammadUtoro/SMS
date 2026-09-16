@@ -17,12 +17,14 @@ export class KeycloakService {
 
   login() {
     this.keycloak.login({
-      redirectUri: window.location.origin,
+      redirectUri: window.location.origin
     });
   }
 
   logout() {
-    return this.keycloak.logout();
+    this.keycloak.logout({
+      redirectUri: window.location.origin
+    });
   }
 
   isLoggedIn() {
