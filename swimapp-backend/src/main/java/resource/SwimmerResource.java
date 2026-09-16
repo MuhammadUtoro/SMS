@@ -69,14 +69,14 @@ public class SwimmerResource {
   @PATCH
   @Path("/{swimmerId}/level")
   public Response updateSwimmerLevel(@PathParam("swimmerId") Long swimmerId, UpdateSwimmerLevelDTO dto) {
-    CreateSwimmerResponseDTO updatedDTO = swimmerService.updateSwimmerLevel(swimmerId, dto);
+    SwimmerDetailDTO updatedDTO = swimmerService.updateSwimmerLevel(swimmerId, dto);
     return Response.ok(updatedDTO).build();
   }
 
   @PATCH
   @Path("/{swimmerId}/course")
   public Response updateSwimmerCourse(@PathParam("swimmerId") Long swimmerId, UpdateSwimmerCourseDTO dto) {
-    CreateSwimmerResponseDTO updatedDTO = swimmerService.updateSwimmerCourse(swimmerId, dto);
+    SwimmerDetailDTO updatedDTO = swimmerService.updateSwimmerCourse(swimmerId, dto);
     return Response.ok(updatedDTO).build();
   }
 

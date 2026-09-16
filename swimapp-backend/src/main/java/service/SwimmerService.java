@@ -112,7 +112,7 @@ public class SwimmerService {
 
     // Update Level - PATCH
     @Transactional
-    public CreateSwimmerResponseDTO updateSwimmerLevel(Long swimmerId, UpdateSwimmerLevelDTO dto) {
+    public SwimmerDetailDTO updateSwimmerLevel(Long swimmerId, UpdateSwimmerLevelDTO dto) {
         Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
             throw new NotFoundException("Swimmer not found!");
@@ -124,12 +124,12 @@ public class SwimmerService {
             throw new NotFoundException("Level not found!");
         }
         swimmer.setLevel(level);
-        return swimmerMapper.toCreateResponseDTO(swimmer);
+        return swimmerMapper.toDetailDTO(swimmer);
     }
 
     // Update Course - PATCH
     @Transactional
-    public CreateSwimmerResponseDTO updateSwimmerCourse(Long swimmerId, UpdateSwimmerCourseDTO dto) {
+    public SwimmerDetailDTO updateSwimmerCourse(Long swimmerId, UpdateSwimmerCourseDTO dto) {
         Swimmer swimmer = swimmerRepository.findSwimmerById(swimmerId);
         if (swimmer == null) {
             throw new NotFoundException("Swimmer not found!");
@@ -141,7 +141,7 @@ public class SwimmerService {
             throw new NotFoundException("Course not found!");
         }
         swimmer.setCourse(course);
-        return swimmerMapper.toCreateResponseDTO(swimmer);
+        return swimmerMapper.toDetailDTO(swimmer);
     }
 
     // Delete swimmer - DELETE
