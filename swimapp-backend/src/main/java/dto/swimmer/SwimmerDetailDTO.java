@@ -9,7 +9,9 @@ public record SwimmerDetailDTO(
     Long parentId,
     String parentEmail,
     Long levelId,
-    Long courseId
+    String levelName,
+    Long courseId,
+    String courseName
     ) {
 
 }
