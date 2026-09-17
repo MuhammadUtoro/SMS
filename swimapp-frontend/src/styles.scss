@@ -6,7 +6,7 @@ html {
     typography: (
       plain-family: 'Iosevka Charon',
       brand-family: 'Iosevka Charon',
-      regular-weight: 400
+      regular-weight: 300
     ),
   ));
 
@@ -20,8 +20,9 @@ body {
 
   // Use Iosevka
   font-family: 'Iosevka Charon', monospace;
-  font-weight: 400;
+  font-weight: 300;
   font-style: normal;
+  font-optical-sizing: auto;
 
   // Reset the user agent margin.
   margin: 1rem;
