@@ -5,5 +5,7 @@ export interface SwimmerDetailDto {
   parentId: number;
   parentEmail: string;
   levelId: number;
+  levelName: string;
   courseId: number;
+  courseName: string;
 }
