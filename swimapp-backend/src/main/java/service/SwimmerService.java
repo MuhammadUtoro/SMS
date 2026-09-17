@@ -141,6 +141,7 @@ public class SwimmerService {
             throw new NotFoundException("Course not found!");
         }
         swimmer.setCourse(course);
+        swimmer.setLevel(course.getLevel());
         return swimmerMapper.toDetailDTO(swimmer);
     }
 
