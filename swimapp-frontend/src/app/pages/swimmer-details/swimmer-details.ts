@@ -1,5 +1,6 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
 import { SwimmerDetailDto } from '../../interfaces/swimmer-detail-dto';
+import { SwimmerSummaryDto } from '../../interfaces/swimmer-summary-dto';
 import { SwimmerService } from '../../services/swimmer/swimmer.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,6 +14,7 @@ export class SwimmerDetails implements OnInit {
   private swimmerService: SwimmerService = inject(SwimmerService);
   private route: ActivatedRoute = inject(ActivatedRoute);
   swimmerDetails = signal<SwimmerDetailDto | undefined>(undefined);
+  swimmerSummary = signal<SwimmerSummaryDto | undefined>(undefined);
 
   ngOnInit(): void {
     const swimmerId = Number(
