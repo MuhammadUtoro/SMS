@@ -52,6 +52,11 @@ export const routes: Routes = [
         title: 'All swimmers'
       },
       {
+        path: 'swimmers/:swimmerId/course',
+        loadComponent: () => import('./pages/assign-course/assign-course').then((m) => m.AssignCourse),
+        title: 'Assign course'
+      },
+      {
         path: 'parents/me',
         loadComponent: () =>
           import('./components/parent-profile/parent-profile').then(
