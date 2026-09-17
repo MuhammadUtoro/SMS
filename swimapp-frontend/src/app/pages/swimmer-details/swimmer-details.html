@@ -6,4 +6,5 @@
   <p>Level Id: {{ swimmerDetails()?.levelId ?? 'Not assigned' }}</p>
   <p>Level Name: {{ swimmerDetails()?.levelName ?? 'Not assigned'}}</p>
   <p>Parent: {{ swimmerDetails()?.parentEmail }}</p>
+  <button matButton="tonal" [routerLink]="['/swimmers', swimmerDetails()?.swimmerId, 'course']">Assign course</button>
 </main>

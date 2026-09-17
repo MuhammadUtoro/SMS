@@ -2,11 +2,13 @@ import { Component, signal, OnInit, inject } from '@angular/core';
 import { SwimmerDetailDto } from '../../interfaces/swimmer-detail-dto';
 import { SwimmerSummaryDto } from '../../interfaces/swimmer-summary-dto';
 import { SwimmerService } from '../../services/swimmer/swimmer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-swimmer-details',
-  imports: [],
+  imports: [RouterLink, MatButtonModule],
   templateUrl: './swimmer-details.html',
   styleUrl: './swimmer-details.css',
 })
