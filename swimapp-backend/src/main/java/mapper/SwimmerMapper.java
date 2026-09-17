@@ -70,9 +70,10 @@ public class SwimmerMapper {
         swimmer.getParent().getParentId(),
         swimmer.getParent().getEmail(),
         swimmer.getLevel().getLevelId(),
-        swimmer.getCourse().getCourseId());
+        swimmer.getLevel().getLevelName(),
+        swimmer.getCourse().getCourseId(),
+        swimmer.getCourse().getCourseName());
   }
-
 
   // Map from DTO to entity - just in case admin needs to update swimmer's
   // detail
