@@ -4,6 +4,8 @@
      <h3>
       {{ course.courseId }}: {{ course.courseName}}, {{ course.courseDay }} - {{ course.courseTime }}
      </h3>
+     <br>
+     <a class="view-details" [routerLink]="['/courses', course.courseId]">View details</a>
     </ol>
   }
 </div>
