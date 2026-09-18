@@ -2,7 +2,7 @@ import { Component, signal, OnInit, inject } from '@angular/core';
 import { SwimmerDetailDto } from '../../interfaces/swimmer-detail-dto';
 import { SwimmerSummaryDto } from '../../interfaces/swimmer-summary-dto';
 import { SwimmerService } from '../../services/swimmer/swimmer.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 
 
@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class SwimmerDetails implements OnInit {
   private swimmerService: SwimmerService = inject(SwimmerService);
   private route: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
   swimmerDetails = signal<SwimmerDetailDto | undefined>(undefined);
   swimmerSummary = signal<SwimmerSummaryDto | undefined>(undefined);
 
@@ -33,6 +34,18 @@ export class SwimmerDetails implements OnInit {
       error: (error) => {
         console.log("Failed to load swimmer", error);
       },
+    });
+  }
+
+  deleteSwimmer(swimmerId: number): void {
+    this.swimmerService.deleteSwimmer(swimmerId).subscribe({
+      next: () => {
+        console.log("Successfully deleted!");
+        this.router.navigate(['/swimmer-list']);
+      },
+      error: (error) => {
+        console.log("Failed to delete!", error);
+      }
     });
   }
 }
