@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core'
 import { HttpClient } from '@angular/common/http';
 import { CreateCourseDto } from '../../interfaces/create-course-dto';
 import { CourseSummaryDto } from '../../interfaces/course-summary-dto';
+import { UpdateCourseInfoDto } from '../../interfaces/update-course-info-dto';
 
 
 @Injectable({
@@ -10,6 +11,8 @@ import { CourseSummaryDto } from '../../interfaces/course-summary-dto';
 export class CourseService {
   createCourseUrl = 'http://localhost:8080/courses';
   getCoursesListUrl = 'http://localhost:8080/courses';
+  updateCourseLevelUrl = 'http://localhost:8080/courses';
+  updateCourseInfoUrl = 'http://localhost:8080/courses';
   private http: HttpClient = inject(HttpClient);
 
   createCourse(dto: CreateCourseDto) {
@@ -18,6 +21,10 @@ export class CourseService {
 
   getAllCourses() {
     return this.http.get<CourseSummaryDto[]>(this.getCoursesListUrl);
+  }
+
+  updateCourseInfo(dto: UpdateCourseInfoDto) {
+    return this.http.put<CourseSummaryDto>(this.updateCourseInfoUrl, dto);
   }
 
 }
