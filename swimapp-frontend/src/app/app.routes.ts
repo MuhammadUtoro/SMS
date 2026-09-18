@@ -31,6 +31,21 @@ export const routes: Routes = [
         title: 'All Courses',
       },
       {
+        path: 'courses/:courseId',
+        loadComponent: () => import('./pages/course-details/course-details').then((m) => m.CourseDetails),
+        title: 'Course Details'
+      },
+      {
+        path: 'courses/:courseId/edit',
+        loadComponent: () => import('./pages/course-form/course-form').then((m) => m.CourseForm),
+        title: 'Edit Course Info'
+      },
+      {
+        path: 'courses/:courseId/trainer',
+        loadComponent:() => import('./pages/course-form/course-form').then((m) => m.CourseForm),
+        title: 'Assign Trainer'
+      },
+      {
         path: 'levels',
         loadComponent: () =>
           import('./pages/level-form/level-form').then((m) => m.LevelForm),
