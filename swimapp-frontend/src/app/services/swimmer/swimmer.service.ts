@@ -18,6 +18,7 @@ export class SwimmerService {
   getSwimmerByIdUrl = 'http://localhost:8080/swimmers';
   updateSwimmerInfoUrl = 'http://localhost:8080/swimmers';
   updateSwimmerCourseUrl = 'http://localhost:8080/swimmers';
+  deleteSwimmerUrl = 'http://localhost:8080/swimmers';
   private http: HttpClient = inject(HttpClient);
 
   createSwimmer(dto: CreateSwimmerDto) {
@@ -49,6 +50,12 @@ export class SwimmerService {
   updateSwimmerLevel(swimmerId: number, dto: UpdateSwimmerLevelDto) {
     return this.http.patch<SwimmerDetailDto>(
       `${this.updateSwimmerCourseUrl}/${swimmerId}/level`, dto
+    );
+  }
+
+  deleteSwimmer(swimmerId: number) {
+    return this.http.delete(
+      `${this.deleteSwimmerUrl}/${swimmerId}`
     );
   }
 }
