@@ -1,13 +1,39 @@
 <main class="course-details-container">
-  <h1>Course Id: {{ courseDetails()?.courseId }} - Course Name: {{ courseDetails()?.courseName }}</h1>
-  <p>Course Day: {{ courseDetails()?.courseDay }}</p>
-  <p>Time: {{ courseDetails()?.courseTime }}</p>
-  <p>Trainer: {{ courseDetails()?.trainerFirstName }} {{ courseDetails()?.trainerLastName }}</p>
-  <p>Level Name: {{ courseDetails()?.levelName }}</p>
-  <button matButton="tonal" [routerLink]="['/courses',
-  courseDetails()!.courseId, 'trainer']">Assign trainer</button>
-  <button matButton="tonal"
-  (click)=deleteCourse(courseDetails()!.courseId)>Remove course</button>
-  <button matButton="tonal" [routerLink]="['/courses',
-  courseDetails()!.courseId, 'edit']">Edit course info</button>
+
+  @if (courseDetails(); as course) {
+
+    <h1>
+      Course Id: {{ course.courseId }}
+      - Course Name: {{ course.courseName }}
+    </h1>
+
+    <p>Course Day: {{ course.courseDay }}</p>
+    <p>Time: {{ course.courseTime }}</p>
+    <p>
+      Trainer: {{ course.trainerFirstName }}
+      {{ course.trainerLastName }}
+    </p>
+
+    <p>Level Name: {{ course.levelName }}</p>
+
+    <button
+      matButton="tonal"
+      [routerLink]="['/courses', course.courseId, 'trainer']">
+      Assign trainer
+    </button>
+
+    <button
+      matButton="tonal"
+      (click)="deleteCourse(course.courseId)">
+      Remove course
+    </button>
+
+    <button
+      matButton="tonal"
+      [routerLink]="['/courses', course.courseId, 'edit']">
+      Edit course info
+    </button>
+
+  }
+
 </main>
