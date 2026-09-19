@@ -1,10 +1,10 @@
-import { Component, ChangeDetectionStrategy, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, OnInit, signal } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatTimepickerModule } from '@angular/material/timepicker';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { CourseService } from '../../services/course/course.service';
@@ -13,6 +13,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
 import { LevelSummaryDto } from '../../interfaces/level-summary-dto';
 import { LevelService } from '../../services/level/level.service';
+import { UpdateCourseInfoDto } from '../../interfaces/update-course-info-dto';
 
 @Component({
   selector: 'app-course-form',
@@ -35,7 +36,9 @@ export class CourseForm implements OnInit{
   private router: Router = inject(Router);
   private trainerService: TrainerService = inject(TrainerService);
   private levelService: LevelService = inject(LevelService);
+  private route: ActivatedRoute = inject(ActivatedRoute);
 
+  isEditMode = signal(this.route.snapshot.paramMap.has('courseId'));
   trainers: TrainerSummaryDto[] = [];
   levels: LevelSummaryDto[] = [];
 
@@ -48,6 +51,11 @@ export class CourseForm implements OnInit{
   })
 
   ngOnInit() {
+    const courseId = this.route.snapshot.paramMap.get('courseId');
+
+    if (courseId) {
+      this.loadCourseDetail(Number(courseId));
+    }
     this.trainerService.getAllTrainers().subscribe({
       next: (trainers) => {
         this.trainers = trainers;
@@ -79,6 +87,43 @@ export class CourseForm implements OnInit{
     });
   }
 
+  loadCourseDetail(courseId: number) {
+    this.courseService.getCourseById(courseId).subscribe({
+      next: (course) => {
+        this.form.patchValue({
+          courseName: course.courseName,
+          courseDay: course.courseDay,
+          courseTime: course.courseTime,
+        });
+      },
+      error: (error) => {
+        console.log("Failed to load details", error);
+      }
+    });
+  }
+
+  updateCourseInfo(): void {
+    const time = this.form.value.courseTime;
+
+    const request: UpdateCourseInfoDto = {
+      courseName: this.form.value.courseName,
+      courseDay: this.form.value.courseDay,
+      courseTime: time
+      ? `${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}:00` : ''
+    }
+    const courseId = Number(
+      this.route.snapshot.paramMap.get('courseId')
+    );
+    this.courseService.updateCourseInfo(courseId, request).subscribe({
+      next: () => {
+        this.router.navigate(['/courses', courseId]);
+      },
+      error: (error) => {
+        console.log("Failed to update course!", error);
+      },
+    });
+  }
+
   days: string[] = [
     'Monday',
     'Tuesday',
@@ -88,12 +133,4 @@ export class CourseForm implements OnInit{
     'Saturday',
     'Sunday'
   ]
-
-  courses: string[] = [
-    'Beginner',
-    'Intermediate',
-    'Advance',
-    'Competitive'
-  ]
-
 }
