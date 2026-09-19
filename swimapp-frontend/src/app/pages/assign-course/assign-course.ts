@@ -74,6 +74,7 @@ export class AssignCourse implements OnInit{
     this.swimmerService.updateSwimmerCourse(swimmerId, dto).subscribe({
       next: (updatedSwimmer) => {
         this.router.navigate(['/swimmers', swimmerId]);
+        this.swimmerDetails.set(updatedSwimmer);
       },
       error: (error) =>{
         console.log("Failed to update course!", error);
