@@ -32,8 +32,10 @@ export class CourseService {
     );
   }
 
-  updateCourseInfo(dto: UpdateCourseInfoDto) {
-    return this.http.put<CourseSummaryDto>(this.updateCourseInfoUrl, dto);
+  updateCourseInfo(courseId: number, dto: UpdateCourseInfoDto) {
+    return this.http.put<CourseSummaryDto>(
+      `${this.updateCourseInfoUrl}/${courseId}`, dto
+    );
   }
 
   deleteCourse(courseId: number) {
