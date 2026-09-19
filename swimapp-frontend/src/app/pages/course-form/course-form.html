@@ -8,11 +8,7 @@
      <form [formGroup]="form">
       <mat-form-field appearance="outline">
         <mat-label>Course Name</mat-label>
-        <mat-select formControlName="courseName">
-          @for (course of courses; track course) {
-            <mat-option [value]="course">{{ course }} </mat-option>
-          }
-        </mat-select>
+        <input matInput formControlName="courseName" required />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Trainer</mat-label>
