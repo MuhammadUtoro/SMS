@@ -1,0 +1,26 @@
+<main class="assign-trainer-container">
+  <mat-card class="assign-trainer-card">
+    <mat-card-header>
+      <mat-card-title>Assign Trainer</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Trainer Name</mat-label>
+          <mat-select formControlName="trainerId">
+            @for (trainer of trainers(); track trainer.trainerId) {
+              <mat-option [value]="trainer.trainerId">
+                {{ trainer.firstName }} {{ trainer.lastName }}
+              </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      @if (course(); as course) {
+        <button matButton="tonal" (click)="assignTrainer(course.courseId)">Assign</button>
+      }
+    </mat-card-actions>
+  </mat-card>
+</main>
