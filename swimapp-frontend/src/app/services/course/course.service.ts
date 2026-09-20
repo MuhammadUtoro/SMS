@@ -4,7 +4,7 @@ import { CreateCourseDto } from '../../interfaces/create-course-dto';
 import { CourseSummaryDto } from '../../interfaces/course-summary-dto';
 import { UpdateCourseInfoDto } from '../../interfaces/update-course-info-dto';
 import { Observable } from 'rxjs';
-
+import { UpdateCourseTrainerDto } from '../../interfaces/update-course-trainer-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,7 @@ export class CourseService {
   getCoursesListUrl = 'http://localhost:8080/courses';
   getCourseByIdUrl = 'http://localhost:8080/courses';
   updateCourseLevelUrl = 'http://localhost:8080/courses';
+  updateCourseTrainerUrl = 'http://localhost:8080/courses';
   updateCourseInfoUrl = 'http://localhost:8080/courses';
   deleteCourseUrl = 'http://localhost:8080/courses';
   private http: HttpClient = inject(HttpClient);
@@ -36,6 +37,12 @@ export class CourseService {
     return this.http.put<CourseSummaryDto>(
       `${this.updateCourseInfoUrl}/${courseId}`, dto
     );
+  }
+
+  updateCourseTrainer(courseId: number, dto: UpdateCourseTrainerDto) {
+    return this.http.patch<CourseSummaryDto>(
+      `${this.updateCourseTrainerUrl}/${courseId}/trainer`, dto
+    )
   }
 
   deleteCourse(courseId: number) {
