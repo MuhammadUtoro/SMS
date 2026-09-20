@@ -42,7 +42,7 @@ export const routes: Routes = [
       },
       {
         path: 'courses/:courseId/trainer',
-        loadComponent:() => import('./pages/course-form/course-form').then((m) => m.CourseForm),
+        loadComponent:() => import('./pages/assign-trainer/assign-trainer').then((m) => m.AssignTrainer),
         title: 'Assign Trainer'
       },
       {
