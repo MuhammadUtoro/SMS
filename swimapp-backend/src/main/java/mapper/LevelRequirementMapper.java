@@ -48,8 +48,10 @@ public class LevelRequirementMapper {
       return null;
     }
     return new LevelRequirementSummaryDTO(
+        levelRequirement.getLevelRequirementId(),
         levelRequirement.getRequirement(),
         levelRequirement.getDescription(),
+        levelRequirement.getLevel().getLevelId(),
         levelRequirement.getLevel().getLevelName()
         );
   }
