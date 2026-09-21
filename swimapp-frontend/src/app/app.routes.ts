@@ -52,6 +52,11 @@ export const routes: Routes = [
         title: 'Create Level',
       },
       {
+        path: 'levels/:levelId/add-requirement',
+        loadComponent: () => import('./pages/level-requirement-form/level-requirement-form').then((m) => m.LevelRequirementForm),
+        title: "Add Requirement"
+      },
+      {
         path: 'level-list',
         loadComponent: () => import('./pages/level-list/level-list').then((m) => m.LevelList),
         title: 'All levels'
