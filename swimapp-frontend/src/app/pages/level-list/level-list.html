@@ -4,6 +4,14 @@
       <h3>
         {{ level.levelName }}
       </h3>
+      <ul>
+        @for (requirement of level.requirements; track requirement.requirementId) {
+          <li>
+            {{ requirement.requirement }}
+          </li>
+        }
+      </ul>
+        <a class="add-requirement" [routerLink]="['/levels', level.levelId, 'add-requirement']">Add requirement</a>
     </ol>
   }
 </div>

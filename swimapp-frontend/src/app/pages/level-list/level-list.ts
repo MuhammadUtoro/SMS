@@ -1,10 +1,16 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { LevelService } from '../../services/level/level.service';
 import { LevelSummaryDto } from '../../interfaces/level-summary-dto';
+import { LevelRequirementDto } from '../../interfaces/level-requirement-dto';
+import { RouterLink, Router, ActivatedRoute } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-level-list',
-  imports: [],
+  imports: [
+    RouterLink,
+    MatButtonModule
+  ],
   templateUrl: './level-list.html',
   styleUrl: './level-list.css',
 })
