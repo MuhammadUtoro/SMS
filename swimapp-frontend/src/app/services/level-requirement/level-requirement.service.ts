@@ -1,6 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LevelRequirementDto } from '../../interfaces/level-requirement-dto';
+import { CreateLevelRequirementDto } from '../../interfaces/create-level-requirement-dto';
+import { LevelRequirementSummaryDto } from '../../interfaces/level-requirement-summary-dto';
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +16,9 @@ export class LevelRequirementService {
 
   getAllRequirements() {
     return this.http.get<LevelRequirementDto[]>(this.getRequirementsList);
+  }
+
+  createRequirement(dto: CreateLevelRequirementDto) {
+    return this.http.post<LevelRequirementSummaryDto>(this.createLevelRequirementUrl, dto);
   }
 }
