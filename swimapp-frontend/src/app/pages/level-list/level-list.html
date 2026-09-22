@@ -7,7 +7,8 @@
       <ul>
         @for (requirement of level.requirements; track requirement.requirementId) {
           <li>
-            {{ requirement.requirement }}
+            <a [routerLink]="['/level-requirements', requirement.requirementId]">{{ requirement.requirement }}</a>
+            <button matButton="tonal" (click)="deleteRequirement(requirement.requirementId)">Delete</button>
           </li>
         }
       </ul>
