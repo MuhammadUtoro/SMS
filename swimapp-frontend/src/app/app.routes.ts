@@ -62,6 +62,11 @@ export const routes: Routes = [
         title: 'All levels'
       },
       {
+        path: 'level-requirements/:requirementId',
+        loadComponent: () => import('./pages/requirement-summary/requirement-summary').then((m) => m.RequirementSummary),
+        title: 'Requirement summary'
+      },
+      {
         path: 'swimmers/:swimmerId',
         loadComponent: () => import('./pages/swimmer-details/swimmer-details').then((m) => m.SwimmerDetails),
         title: 'Swimmer Details'
