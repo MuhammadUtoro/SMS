@@ -1,1 +1,23 @@
-<p>level-requirement-form works!</p>
+<main  class="requirement-container">
+  <mat-card class="requirement-card">
+    <mat-card-header>
+      <mat-card-title>Swimming Management System</mat-card-title>
+      <mat-card-subtitle>Add requirement</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>requirement</mat-label>
+          <input matInput formControlName="requirement" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>description</mat-label>
+          <input matInput formControlName="description" required />
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button matButton="tonal" (click)="createRequirement()">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</main>

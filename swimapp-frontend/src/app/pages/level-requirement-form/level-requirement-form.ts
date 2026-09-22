@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { LevelRequirementService } from '../../services/level-requirement/level-requirement.service';
+import { MatInputModule } from '@angular/material/input';
 import { LevelService } from '../../services/level/level.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LevelSummaryDto } from '../../interfaces/level-summary-dto';
@@ -16,7 +17,8 @@ import { CreateLevelRequirementDto } from '../../interfaces/create-level-require
     ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule
   ],
   templateUrl: './level-requirement-form.html',
   styleUrl: './level-requirement-form.css',
@@ -65,6 +67,12 @@ export class LevelRequirementForm {
         console.log("Failed to add requirement!", error);
       }
     });
+  }
+
+  deleteRequirement(): void {
+    const requirementId = Number(
+      this.route.snapshot.paramMap.get('requirementId')
+    )
   }
 
 }
