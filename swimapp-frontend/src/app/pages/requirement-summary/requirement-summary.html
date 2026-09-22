@@ -1,0 +1,8 @@
+<main class="summary-container">
+  @if (summary(); as summary) {
+    <h3>Requirement Id: {{ summary.level_requirement_id }}</h3>
+    <h4>Description: {{ summary.description }}</h4>
+    <p>Level Id: {{ summary.level_id }}</p>
+    <p>Level Name: {{ summary.levelName }}</p>
+  }
+</main>
