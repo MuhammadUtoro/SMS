@@ -1,0 +1,26 @@
+<main class="parent-dashboard">
+  <header>
+    <h1>Parent Dashboard</h1>
+    <p>Welcome back!</p>
+    <p>Add and view your swimmers' information here!</p>
+    <a matButton="tonal" routerLink="/parents/create-swimmer">
+     <mat-icon>person_add</mat-icon>
+     <span>Add swimmer</span>
+    </a>
+  </header>
+  <mat-divider></mat-divider>
+  <section class="my-swimmers">
+    <h2>My Swimmers</h2>
+    @if (swimmers().length === 0) {
+      <p>You don't have any swimmers registered yet!</p>
+    } @else {
+      @for (swimmer of swimmers(); track swimmer.swimmerId) {
+        <h3>{{ swimmer.firstName }} {{ swimmer.lastName }}</h3>
+        <p>Level: {{ swimmer.levelName ?? 'Not assigned' }}</p>
+        <p>Course: {{ swimmer.courseName ?? 'Not assigned' }}</p>
+        <p>Course Day: {{ swimmer.courseDay ?? 'Not assigned' }}</p>
+        <p>Course Time: {{ swimmer.courseTime ?? 'Not assigned' }}</p>
+      }
+    }
+  </section>
+</main>
