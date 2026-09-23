@@ -10,12 +10,13 @@ html {
     ),
   ));
 
+  background: radial-gradient(circle, #a9d6e5, #89c2d9, #61a5c2, #468faf);
+
 }
 
 body {
   color-scheme: light;
 
-  background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
 
   // Use Iosevka
@@ -25,7 +26,8 @@ body {
   font-optical-sizing: auto;
 
   // Reset the user agent margin.
-  margin: 1rem;
+  margin: 0;
+  min-height: 100%;
 }
 
 html {
@@ -34,4 +36,10 @@ html {
 
 body {
   min-height: 100%;
+}
+
+:root {
+  @include mat.toolbar-overrides((
+    container-background-color: #caf0f8
+  ))
 }
