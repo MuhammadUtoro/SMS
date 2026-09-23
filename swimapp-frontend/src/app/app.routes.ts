@@ -14,7 +14,7 @@ export const routes: Routes = [
       {
         path: 'trainers/register',
         loadComponent: () =>
-          import('./components/trainer-registration/trainer-registration').then(
+          import('./pages/trainer-registration/trainer-registration').then(
             (m) => m.TrainerRegistration,
           ),
         title: 'Trainer Registration',
@@ -84,20 +84,20 @@ export const routes: Routes = [
       {
         path: 'parents/me',
         loadComponent: () =>
-          import('./components/parent-profile/parent-profile').then(
+          import('./pages/parent-profile/parent-profile').then(
             (m) => m.ParentProfile,
           ),
         title: 'Parent Profile',
       },
       {
         path: 'parents/me/edit',
-        loadComponent: () => import('./components/registration/registration').then((m) => m.Registration),
+        loadComponent: () => import('./pages/registration/registration').then((m) => m.Registration),
         title: 'Edit Profile'
       },
       {
         path: 'parents/create-swimmer',
         loadComponent: () =>
-          import('./components/swimmer-registration/swimmer-registration').then(
+          import('./pages/swimmer-registration/swimmer-registration').then(
             (m) => m.SwimmerRegistration,
           ),
         title: 'Swimmer Registration',
@@ -105,7 +105,7 @@ export const routes: Routes = [
       {
         path: 'swimmers',
         loadComponent: () =>
-          import('./components/swimmer-registration/swimmer-registration').then(
+          import('./pages/swimmer-registration/swimmer-registration').then(
             (m) => m.SwimmerRegistration,
           ),
         title: 'Swimmer Registration',
@@ -113,7 +113,7 @@ export const routes: Routes = [
       {
         path: 'trainers/me',
         loadComponent: () =>
-          import('./components/trainer-profile/trainer-profile').then(
+          import('./pages/trainer-profile/trainer-profile').then(
             (m) => m.TrainerProfile,
           ),
         title: 'Trainer Profile',
@@ -121,7 +121,7 @@ export const routes: Routes = [
       {
         path: 'trainers/me/edit',
         loadComponent: () =>
-          import('./components/trainer-registration/trainer-registration').then((m) => m.TrainerRegistration),
+          import('./pages/trainer-registration/trainer-registration').then((m) => m.TrainerRegistration),
         title: 'Edit Profile'
       },
       {
@@ -135,7 +135,7 @@ export const routes: Routes = [
   {
     path: 'parents/register',
     loadComponent: () =>
-      import('./components/registration/registration').then(
+      import('./pages/registration/registration').then(
         (m) => m.Registration,
       ),
     title: 'Registration',
@@ -143,7 +143,7 @@ export const routes: Routes = [
   {
     path: 'registration-success',
     loadComponent: () =>
-      import('./components/registration-success/registration-success').then(
+      import('./pages/registration-success/registration-success').then(
         (m) => m.RegistrationSuccess,
       ),
     title: 'Registration Success',
