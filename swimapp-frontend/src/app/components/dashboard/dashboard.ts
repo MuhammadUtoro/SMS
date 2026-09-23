@@ -13,51 +13,34 @@ import { SwimmerService } from '../../services/swimmer/swimmer.service';
 import { CourseService } from '../../services/course/course.service';
 import { LevelService } from '../../services/level/level.service';
 import { LevelRequirementService } from '../../services/level-requirement/level-requirement.service';
-
+import { ParentDashboard } from '../../pages/dashboard/parent-dashboard/parent-dashboard';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule],
+  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule, ParentDashboard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
 export class Dashboard implements OnInit{
   private authService: AuthService = inject(AuthService);
-  private parentService: ParentService = inject(ParentService);
   private swimmerService: SwimmerService = inject(SwimmerService);
   private courseService: CourseService = inject(CourseService);
   private levelService: LevelService = inject(LevelService);
   private levelRequirementService: LevelRequirementService = inject(LevelRequirementService);
 
   user = this.authService.user;
-  swimmers: SwimmerSummaryDto[] = [];
   swimmersList = signal<SwimmerSummaryDto[]>([]);
   courses = signal<CourseSummaryDto[]>([]);
   levels = signal<LevelSummaryDto[]>([]);
   reqs = signal<LevelRequirementDto[]>([]);
 
   ngOnInit(): void {
-    if (this.user()?.roles?.includes('PARENT')) {
-      this.getMySwimmers();
-    }
     if (this.user()?.roles?.includes('ADMIN')) {
       this.getSwimmersList();
       this.getCoursesList();
       this.getLevelsList();
       this.getRequirementsList();
     }
-  }
-
-  getMySwimmers() {
-    this.parentService.getMySwimmers().subscribe({
-      next: swimmers => {
-        this.swimmers = swimmers;
-        console.log(swimmers);
-      },
-      error: error => {
-        console.log("Failed to load swimmers", error);
-      }
-    });
   }
 
   getSwimmersList() {
