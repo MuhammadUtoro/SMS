@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { ParentService } from '../../services/parent/parent.service';
 import { MatButtonModule } from '@angular/material/button';
 import { SwimmerSummaryDto } from '../../interfaces/swimmer-summary-dto';
 import { CourseSummaryDto } from '../../interfaces/course-summary-dto';
@@ -14,10 +13,11 @@ import { CourseService } from '../../services/course/course.service';
 import { LevelService } from '../../services/level/level.service';
 import { LevelRequirementService } from '../../services/level-requirement/level-requirement.service';
 import { ParentDashboard } from '../../pages/dashboard/parent-dashboard/parent-dashboard';
+import { TrainerDashboard } from '../../pages/dashboard/trainer-dashboard/trainer-dashboard';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule, ParentDashboard],
+  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule, ParentDashboard, TrainerDashboard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
