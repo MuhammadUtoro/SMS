@@ -1,0 +1,20 @@
+.trainer-dashboard {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.my-courses h2 {
+  text-align: center;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 0.25rem;
+}
+
+article {
+  border: 1.5px solid black;
+  border-radius: 2rem;
+  padding: 1rem;
+}
