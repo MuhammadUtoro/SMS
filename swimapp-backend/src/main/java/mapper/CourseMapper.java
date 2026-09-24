@@ -53,6 +53,7 @@ public class CourseMapper {
       return  null;
     }
     return new CourseDetailDTO(
+        course.getCourseId(),
         course.getCourseName(),
         course.getCourseDay(),
         course.getCourseTime(),
