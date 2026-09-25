@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal, OnInit, inject } from '@angular/core';
+import { TrainerService } from '../../services/trainer/trainer.service';
+import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
 
 @Component({
   selector: 'app-trainer-list',
@@ -6,6 +8,22 @@ import { Component } from '@angular/core';
   templateUrl: './trainer-list.html',
   styleUrl: './trainer-list.css',
 })
-export class TrainerList {
+export class TrainerList implements OnInit {
+  private trainerService: TrainerService = inject(TrainerService);
+  trainers = signal<TrainerSummaryDto[]>([]);
 
+  ngOnInit(): void {
+     this.getTrainersList();
+  }
+
+  getTrainersList(): void {
+    this.trainerService.getAllTrainers().subscribe({
+      next: (trainers) => {
+        this.trainers.set(trainers);
+      },
+      error: (error) => {
+        console.log("Failed to load trainers!", error);
+      },
+    });
+  }
 }

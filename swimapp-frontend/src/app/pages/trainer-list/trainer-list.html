@@ -1,1 +1,19 @@
-<p>trainer-list works!</p>
+<main class="trainer-list-container">
+  <header>
+    <h2>List of Trainers</h2>
+    <p>Manage trainers here</p>
+  </header>
+  <section class="trainer-table">
+    @for (trainer of trainers(); track trainer.trainerId) {
+      <ul>
+        <li>
+          <h3>Trainer ID: {{ trainer.trainerId }}</h3>
+          <h4>Trainer Name: {{ trainer.firstName }} {{ trainer.lastName }}</h4>
+          @for (course of trainer.courses; track course.courseId) {
+            <p>Course Name: {{ course.courseName }} . {{ course.courseDay }} . {{ course.courseTime }}</p>
+          }
+        </li>
+      </ul>
+    }
+  </section>
+</main>
