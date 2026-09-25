@@ -1,1 +1,61 @@
-<p>admin-dashboard works!</p>
+<main class="admin-dashboard">
+  <header class="admin-dashboard-header">
+    <h1>Administrator Dashboard</h1>
+    <h2>Welcome, {{ user()?. username }}</h2>
+    <p>Manage your swimmers, courses and trainers!</p>
+  </header>
+  <section class="stats-section">
+    <h2>Overview</h2>
+    <ul class="stats-grid">
+      <li>
+        <h3>Total Swimmers</h3>
+        <p>{{ swimmers().length }}</p>
+      </li>
+      <li>
+        <h3>Total Trainers</h3>
+        <p>{{ trainers().length }}</p>
+      </li>
+      <li>
+        <h3>Total Courses</h3>
+        <p>{{ courses().length }}</p>
+      </li>
+    </ul>
+  </section>
+  <section class="management-section">
+    <h2>Management</h2>
+    <div class="management-grid">
+      <article class="management-card">
+        <header>
+          <h3>Manage Swimmers</h3>
+        </header>
+        <div>
+          @for (swimmer of swimmers().slice(0, 3); track swimmer.swimmerId) {
+            <p>
+              {{ swimmer.swimmerId }}.
+              {{ swimmer.firstName }} {{ swimmer.lastName }}:
+              {{ swimmer.levelName }}
+            </p>
+          }
+        </div>
+        <footer>
+          <a matButton="tonal" routerLink="/swimmer-list">View all swimmers</a>
+        </footer>
+      </article>
+      <article class="management-card">
+        <header>
+          <h3>Manage Trainers</h3>
+        </header>
+        <div>
+          @for (trainer of trainers().slice(0, 3); track trainer.trainerId) {
+            <p>
+              {{ trainer.trainerId }}.
+              {{ trainer.firstName }} {{ trainer.lastName }}
+          }
+        </div>
+        <footer>
+          <a matButton="tonal" routerLink="/trainer-list">View all trainers</a>
+        </footer>
+      </article>
+    </div>
+  </section>
+</main>

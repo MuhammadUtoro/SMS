@@ -1,0 +1,35 @@
+.stats-section {
+  margin-bottom: 2rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1 rem;
+  padding: 0;
+  list-style: none;
+}
+
+.stats-grid li {
+  padding: 1.25rem;
+  border: 1.5px solid black;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.management-section {
+  margin-top: 2rem;
+}
+
+.management-gird {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.management-card {
+  padding: 1.25rem;
+  border: 1.5px solid black;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
