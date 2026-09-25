@@ -111,6 +111,11 @@ export const routes: Routes = [
         title: 'Swimmer Registration',
       },
       {
+        path: 'trainer-list',
+        loadComponent: () => import('./pages/trainer-list/trainer-list').then((m) => m.TrainerList),
+        title: 'Trainer list',
+      },
+      {
         path: 'trainers/me',
         loadComponent: () =>
           import('./pages/trainer-profile/trainer-profile').then(
