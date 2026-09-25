@@ -14,10 +14,11 @@ import { LevelService } from '../../services/level/level.service';
 import { LevelRequirementService } from '../../services/level-requirement/level-requirement.service';
 import { ParentDashboard } from '../../pages/dashboard/parent-dashboard/parent-dashboard';
 import { TrainerDashboard } from '../../pages/dashboard/trainer-dashboard/trainer-dashboard';
+import { AdminDashboard } from '../../pages/dashboard/admin-dashboard/admin-dashboard';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule, ParentDashboard, TrainerDashboard],
+  imports: [MatButtonModule, RouterLink, MatIconModule, MatCardModule, ParentDashboard, TrainerDashboard, AdminDashboard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
