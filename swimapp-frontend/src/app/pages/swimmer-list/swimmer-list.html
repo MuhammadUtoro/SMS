@@ -1,11 +1,37 @@
 <main class="swimmer-list-container">
-  @for (swimmer of swimmers(); track swimmer.swimmerId) {
-  <ul>
-    <li>
-      {{ swimmer.swimmerId }}: {{ swimmer.firstName }} {{ swimmer.lastName }}:
-      {{ swimmer.courseName }}
-      <a class="view-details" [routerLink]="['/swimmers', swimmer.swimmerId]">View details</a>
-    </li>
-  </ul>
-  }
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (swimmer of swimmers(); track swimmer.swimmerId) {
+        <tr>
+          <td>{{ swimmer.swimmerId }}</td>
+          <td>{{ swimmer.firstName }} {{ swimmer.lastName }}</td>
+          <td>{{ swimmer.courseName ?? 'Not assigned' }}</td>
+          <td class="actions">
+            <a
+              [routerLink]="['/swimmers', swimmer.swimmerId]"
+              aria-label="View swimmer details"
+            >
+              <mat-icon>visibility</mat-icon>
+            </a>
+
+            <a
+              [routerLink]="['/swimmers', swimmer.swimmerId, 'edit']"
+              aria-label="Edit swimmer"
+            >
+              <mat-icon>edit</mat-icon>
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
 </main>
