@@ -1,11 +1,41 @@
-<div class="course-list-container">
-  @for (course of courses(); track course.courseId) {
-    <ol>
-     <h3>
-      {{ course.courseId }}: {{ course.courseName}}, {{ course.courseDay }} - {{ course.courseTime }}
-     </h3>
-     <br>
-     <a class="view-details" [routerLink]="['/courses', course.courseId]">View details</a>
-    </ol>
-  }
-</div>
+<main class="course-list-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Course</th>
+        <th>Level</th>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (course of courses(); track course.courseId) {
+        <tr>
+          <td>{{ course.courseId }}</td>
+          <td>{{ course.courseName }}</td>
+          <td>{{ course.levelName }}</td>
+          <td>{{ course.courseDay }}</td>
+          <td>{{ course.courseTime }}</td>
+          <td class="actions">
+            <a
+              [routerLink]="['/courses', course.courseId]"
+              aria-label="View course details"
+            >
+              <mat-icon>visibility</mat-icon>
+            </a>
+
+            <a
+              [routerLink]="['/courses', course.courseId, 'edit']"
+              aria-label="Edit course"
+            >
+              <mat-icon>edit</mat-icon>
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</main>

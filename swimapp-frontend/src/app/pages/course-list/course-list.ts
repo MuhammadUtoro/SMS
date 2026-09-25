@@ -2,11 +2,12 @@ import { Component, inject, signal, OnInit } from '@angular/core';
 import { CourseService } from '../../services/course/course.service';
 import { CourseSummaryDto } from '../../interfaces/course-summary-dto';
 import { RouterLink } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-course-list',
-  imports: [MatButtonModule, RouterLink],
+  imports: [MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './course-list.html',
   styleUrl: './course-list.css',
 })
