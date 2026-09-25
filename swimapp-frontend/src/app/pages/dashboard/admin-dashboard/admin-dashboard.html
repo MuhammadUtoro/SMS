@@ -56,6 +56,25 @@
           <a matButton="tonal" routerLink="/trainer-list">View all trainers</a>
         </footer>
       </article>
+      <article class="management-card">
+        <header>
+          <h3>Manage Courses</h3>
+        </header>
+        <div>
+          @for (course of courses().slice(0, 3); track course.courseId) {
+            <p>
+              <strong> {{ course.courseName }}</strong>
+              <br>
+              {{ course.levelName }}
+              . {{ course.courseDay }}
+              . {{ course.courseTime }}
+            </p>
+          }
+        </div>
+        <footer>
+          <a matButton="tonal" routerLink="/course-list">View all courses</a>
+        </footer>
+      </article>
     </div>
   </section>
 </main>
