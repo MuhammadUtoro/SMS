@@ -13,6 +13,7 @@
   gap: 1rem;
 }
 
-.course-form mat-form-field:first-child {
+.course-name {
   grid-column: 1/-1;
 }
+

@@ -12,7 +12,7 @@
       @if (!isEditMode()) {
         <form class="course-form" [formGroup]="form">
 
-          <mat-form-field appearance="outline">
+          <mat-form-field class="course-name" appearance="outline">
             <mat-label>Course Name</mat-label>
             <input matInput formControlName="courseName" required />
           </mat-form-field>
@@ -65,11 +65,28 @@
         </form>
       } @else {
         <form class="course-form" [formGroup]="form">
+          <mat-form-field appearance="outline">
+            <mat-label>Select Day</mat-label>
+            <mat-select formControlName="courseDay">
+              @for (day of days; track day) {
+                <mat-option [value]="day">{{ day }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
 
-          <!-- day -->
-
-          <!-- time -->
-
+          <mat-form-field appearance="outline">
+            <mat-label>Pick a time</mat-label>
+            <input
+              matInput
+              formControlName="courseTime"
+              [matTimepicker]="picker"
+            >
+            <mat-timepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            />
+            <mat-timepicker #picker />
+          </mat-form-field>
         </form>
       }
     </mat-card-content>
