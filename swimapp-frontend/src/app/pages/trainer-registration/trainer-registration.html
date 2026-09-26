@@ -1,4 +1,4 @@
-<div class="trainer-registration-container">
+<main class="trainer-registration-container">
   <mat-card class="registration-card" appearance="raised">
     <mat-card-header>
       <mat-card-title>Swimming Management System</mat-card-title>
@@ -8,7 +8,7 @@
     </mat-card-header>
     <mat-card-content>
       @if (!isEditMode()) {
-      <form [formGroup]="form">
+      <form class="trainer-registration-form" [formGroup]="form">
         <mat-form-field appearance="outline">
           <mat-label>email</mat-label>
           <input
@@ -40,7 +40,7 @@
         <button matButton="tonal" (click)="registerTrainer()">Register</button>
       </mat-card-actions>
       } @else {
-      <form [formGroup]="form">
+      <form class="trainer-registration-form" [formGroup]="form">
         <mat-form-field appearance="outline">
           <mat-label>First Name</mat-label>
           <input matInput formControlName="firstName" required />
@@ -56,4 +56,4 @@
       }
     </mat-card-content>
   </mat-card>
-</div>
+</main>
