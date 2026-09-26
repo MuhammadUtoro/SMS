@@ -1,57 +1,75 @@
-<div class="profile-page">
+<main class="profile-page">
+
   <header class="page-header">
-    <div>
-      <p class="eyebrow">ACCOUNT</p>
-      <h1> My Profile </h1>
-      <p class="page-description"> Manage your personal information and account </p>
-    </div>
+    <p class="eyebrow">ACCOUNT</p>
+    <h1>My Profile</h1>
+    <p class="page-description">
+      Manage your personal information and account
+    </p>
   </header>
 
-  <main class="profile-content">
+  <section class="profile-content" aria-labelledby="profile-heading">
+
     <mat-card class="profile-card" appearance="outlined">
+
       <mat-card-header>
         <div mat-card-avatar class="profile-avatar">
-          {{ parent()?.firstName?.charAt(0)}}
+          {{ parent()?.firstName?.charAt(0) }}
         </div>
-        <mat-card-title> {{ parent()?.firstName }} {{ parent()?.lastName }} </mat-card-title>
-        <mat-card-subtitle> Parent account </mat-card-subtitle>
+
+        <mat-card-title>
+          {{ parent()?.firstName }} {{ parent()?.lastName }}
+        </mat-card-title>
+
+        <mat-card-subtitle>
+          Parent account
+        </mat-card-subtitle>
       </mat-card-header>
 
-      <mat-divider></mat-divider>
+      <mat-divider />
+
       <mat-card-content>
+
         <section class="profile-section">
-          <h2>Personal Information </h2>
-          <div class="profile-grid">
+          <h2 id="profile-heading">Personal Information</h2>
+
+          <dl class="profile-grid">
+
             <div class="profile-field">
-              <span class="field-label">First Name: </span>
-              <span class="field-value"> {{ parent()?.firstName }} </span>
+              <dt>First Name</dt>
+              <dd>{{ parent()?.firstName }}</dd>
             </div>
 
             <div class="profile-field">
-                <span class="field-label">Last Name:  </span>
-                <span class="field-value"> {{ parent()?.lastName }} </span>
+              <dt>Last Name</dt>
+              <dd>{{ parent()?.lastName }}</dd>
             </div>
 
             <div class="profile-field">
-                <span class="field-label">Username: </span>
-                <span class="field-value"> {{ parent()?.username }} </span>
+              <dt>Username</dt>
+              <dd>{{ parent()?.username }}</dd>
             </div>
+
             <div class="profile-field">
-              <span class="field-label">Email: </span>
-              <span class="field-value"> {{ parent()?.email }} </span>
+              <dt>Email</dt>
+              <dd>{{ parent()?.email }}</dd>
             </div>
-          </div>
+
+          </dl>
         </section>
+
       </mat-card-content>
 
-      <mat-divider></mat-divider>
+      <mat-divider />
 
       <mat-card-actions class="profile-actions">
-       <button matButton="tonal" routerLink='/parents/me/edit'>
-        Edit profile
-       </button>
+        <a matButton="tonal" routerLink="/parents/me/edit">
+          Edit profile
+        </a>
       </mat-card-actions>
 
     </mat-card>
-  </main>
-</div>
+
+  </section>
+
+</main>
