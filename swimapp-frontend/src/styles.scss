@@ -10,7 +10,7 @@ html {
     ),
   ));
 
-  background: radial-gradient(circle, #a9d6e5, #89c2d9, #61a5c2, #468faf);
+  background: radial-gradient(circle, #e2eafc, #d7e3fc, #ccdbfd, #c1d3fe);
 
 }
 
@@ -40,6 +40,10 @@ body {
 
 :root {
   @include mat.toolbar-overrides((
-    container-background-color: #caf0f8
-  ))
+    container-background-color: #ccdbfd
+  ));
+  @include mat.button-overrides((
+    tonal-ripple-color: #abc4ff
+  ));
 }
+
