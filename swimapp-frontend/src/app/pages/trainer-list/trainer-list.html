@@ -3,17 +3,55 @@
     <h2>List of Trainers</h2>
     <p>Manage trainers here</p>
   </header>
+
   <section class="trainer-table">
-    @for (trainer of trainers(); track trainer.trainerId) {
-      <ul>
-        <li>
-          <h3>Trainer ID: {{ trainer.trainerId }}</h3>
-          <h4>Trainer Name: {{ trainer.firstName }} {{ trainer.lastName }}</h4>
-          @for (course of trainer.courses; track course.courseId) {
-            <p>Course Name: {{ course.courseName }} . {{ course.courseDay }} . {{ course.courseTime }}</p>
-          }
-        </li>
-      </ul>
-    }
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Courses</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (trainer of trainers(); track trainer.trainerId) {
+          <tr>
+            <td>{{ trainer.trainerId }}</td>
+
+            <td>
+              {{ trainer.firstName }} {{ trainer.lastName }}
+            </td>
+
+            <td>
+              @for (course of trainer.courses; track course.courseId) {
+                <div>
+                  {{ course.courseName }}
+                  · {{ course.courseDay }}
+                  · {{ course.courseTime }}
+                </div>
+              }
+            </td>
+
+            <td class="actions">
+              <a
+                [routerLink]="['/trainers', trainer.trainerId]"
+                aria-label="View trainer details"
+              >
+                <mat-icon>visibility</mat-icon>
+              </a>
+
+              <a
+                [routerLink]="['/trainers', trainer.trainerId, 'edit']"
+                aria-label="Edit trainer"
+              >
+                <mat-icon>edit</mat-icon>
+              </a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </section>
 </main>

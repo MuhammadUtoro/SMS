@@ -1,10 +1,12 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
 import { TrainerService } from '../../services/trainer/trainer.service';
 import { TrainerSummaryDto } from '../../interfaces/trainer-summary-dto';
+import { RouterLink } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-trainer-list',
-  imports: [],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './trainer-list.html',
   styleUrl: './trainer-list.css',
 })
