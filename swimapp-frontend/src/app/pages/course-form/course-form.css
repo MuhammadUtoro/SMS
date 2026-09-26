@@ -1,36 +1,18 @@
 .create-course-container {
-  min-height: calc(100vh - 64px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .create-card {
   width: 100%;
-  max-width: 500px;
 }
 
-mat-card-header {
-  margin-bottom: 1.5rem;
-}
-
-mat-card-title {
-  font-size: 1.5rem;
-}
-
-mat-card-content {
-  display: flex;
-  flex-direction: column;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
+.course-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-mat-form-field {
-  width: 100%;
+.course-form mat-form-field:first-child {
+  grid-column: 1/-1;
 }
-

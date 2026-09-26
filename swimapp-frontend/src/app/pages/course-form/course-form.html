@@ -1,70 +1,79 @@
-<div class="create-course-container">
+<main class="create-course-container">
   <mat-card class="create-card" appearance="raised">
+
     <mat-card-header>
       <mat-card-title>Swimming Management System</mat-card-title>
-      <mat-card-subtitle>{{ isEditMode() ? 'Edit Course' : 'Create New Course' }}</mat-card-subtitle>
+      <mat-card-subtitle>
+        {{ isEditMode() ? 'Edit Course' : 'Create New Course' }}
+      </mat-card-subtitle>
     </mat-card-header>
+
     <mat-card-content>
       @if (!isEditMode()) {
-       <form [formGroup]="form">
-        <mat-form-field appearance="outline">
-          <mat-label>Course Name</mat-label>
-          <input matInput formControlName="courseName" required />
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Trainer</mat-label>
-          <mat-select formControlName="trainerId">
-            @for (trainer of trainers; track trainer.trainerId) {
-            <mat-option [value]="trainer.trainerId">
-              {{ trainer.firstName }} {{ trainer.lastName }}
-            </mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
+        <form class="course-form" [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Course Name</mat-label>
+            <input matInput formControlName="courseName" required />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Trainer</mat-label>
+            <mat-select formControlName="trainerId">
+              @for (trainer of trainers; track trainer.trainerId) {
+                <mat-option [value]="trainer.trainerId">
+                  {{ trainer.firstName }} {{ trainer.lastName }}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
           <mat-form-field appearance="outline">
             <mat-label>Level</mat-label>
             <mat-select formControlName="levelId">
               @for (level of levels; track level.levelId) {
-              <mat-option [value]="level.levelId">
-                {{ level.levelName }}
-              </mat-option>
+                <mat-option [value]="level.levelId">
+                  {{ level.levelName }}
+                </mat-option>
               }
             </mat-select>
           </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Select Day</mat-label>
-          <mat-select formControlName="courseDay">
-            @for (day of days; track day) {
-              <mat-option [value]="day">{{ day }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Pick a time</mat-label>
-          <input matInput formControlName="courseTime" [matTimepicker]="picker">
-          <mat-timepicker-toggle matIconSuffix [for]="picker"></mat-timepicker-toggle>
-          <mat-timepicker #picker />
-        </mat-form-field>
-       </form>
-        } @else {
-          <form [formGroup]="form">
-            <mat-form-field appearance="outline">
-              <mat-label>Select Day</mat-label>
-              <mat-select formControlName="courseDay">
-                @for (day of days; track day) {
-                  <mat-option [value]="day">{{ day }}</mat-option>
-                }
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Pick a time</mat-label>
-              <input matInput formControlName="courseTime" [matTimepicker]="picker">
-              <mat-timepicker-toggle matIconSuffix [for]="picker"></mat-timepicker-toggle>
-              <mat-timepicker #picker />
-            </mat-form-field>
-          </form>
-        }
+
+          <mat-form-field appearance="outline">
+            <mat-label>Select Day</mat-label>
+            <mat-select formControlName="courseDay">
+              @for (day of days; track day) {
+                <mat-option [value]="day">{{ day }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Pick a time</mat-label>
+            <input
+              matInput
+              formControlName="courseTime"
+              [matTimepicker]="picker"
+            >
+            <mat-timepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            />
+            <mat-timepicker #picker />
+          </mat-form-field>
+
+        </form>
+      } @else {
+        <form class="course-form" [formGroup]="form">
+
+          <!-- day -->
+
+          <!-- time -->
+
+        </form>
+      }
     </mat-card-content>
+
     <mat-card-actions>
       @if (!isEditMode()) {
         <button matButton="tonal" (click)="createCourse()">Submit</button>
@@ -72,5 +81,6 @@
         <button matButton="tonal" (click)="updateCourseInfo()">Submit</button>
       }
     </mat-card-actions>
+
   </mat-card>
-</div>
+</main>
