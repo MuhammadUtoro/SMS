@@ -1,46 +1,41 @@
-<div class="profile-page">
+<main class="profile-page">
   <header class="page-header">
-    <div>
-      <p class="eyebrow">ACCOUNT</p>
-      <h1> My Profile </h1>
-      <p class="page-description"> Manage your personal information and account </p>
-    </div>
+    <h1>My Profile</h1>
+    <p class="page-description">
+      Update your personal info
+    </p>
   </header>
 
-  <main class="profile-content">
+  <section class="profile-content">
     <mat-card class="profile-card" appearance="outlined">
       <mat-card-header>
         <div mat-card-avatar class="profile-avatar">
           {{ trainer()?.firstName?.charAt(0)}}
         </div>
         <mat-card-title> {{ trainer()?.firstName }} {{ trainer()?.lastName }} </mat-card-title>
-        <mat-card-subtitle> Trainer account </mat-card-subtitle>
+        <mat-card-subtitle>Trainer account</mat-card-subtitle>
       </mat-card-header>
 
       <mat-divider></mat-divider>
       <mat-card-content>
         <section class="profile-section">
-          <h2>Personal Information </h2>
-          <div class="profile-grid">
+          <h2 id="profile-heading">Personal Information </h2>
+          <dl class="profile-grid">
             <div class="profile-field">
-              <span class="field-label">First Name: </span>
-              <span class="field-value"> {{ trainer()?.firstName }} </span>
+              <dt>First Name</dt>
+              <dd>{{ trainer()?.firstName }}
             </div>
 
             <div class="profile-field">
-                <span class="field-label">Last Name:  </span>
-                <span class="field-value"> {{ trainer()?.lastName }} </span>
+              <dt>Last Name</dt>
+              <dd>{{ trainer()?.lastName }}
             </div>
-            @for (course of trainer()?.courses ?? []; track course.courseName) {
-          <div class="profile-field">
-            <span class="field-label">Course:</span>
-            <span class="field-value">
-              {{ course.courseName }} - {{ course.courseDay }}, {{ course.courseTime }}
-            </span>
-          </div>
-            }
 
-          </div>
+            <div class="profile-field">
+              <dt>Trainer ID</dt>
+              <dd>{{ trainer()?.trainerId }}
+            </div>
+          </dl>
         </section>
       </mat-card-content>
 
@@ -53,5 +48,5 @@
       </mat-card-actions>
 
     </mat-card>
-  </main>
-</div>
+  </section>
+</main>
