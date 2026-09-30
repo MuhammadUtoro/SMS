@@ -43,7 +43,21 @@ body {
     container-background-color: #ccdbfd
   ));
   @include mat.button-overrides((
-    tonal-ripple-color: #abc4ff
+    tonal-container-color: #a8dadc,
+    tonal-container-height: 2.1rem,
+    tonal-container-shape: 0.5rem,
+    text-container-shape: 0.5rem,
+    text-container-height: 2.1rem
   ));
+}
+
+a[matButton],
+button[matButton] {
+  transition: transform 250ms ease;
+}
+
+a[matButton]:active,
+button[matButton]:active {
+  transform: scale(0.95);
 }
 
