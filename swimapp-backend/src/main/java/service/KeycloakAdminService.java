@@ -22,7 +22,7 @@ public class KeycloakAdminService {
     // Keycloak Admin
     public KeycloakAdminService() {
          keycloak = KeycloakBuilder.builder()
-                .serverUrl("http://localhost:8081")
+                .serverUrl("http://keycloak:8080")
                 .realm("master")
                 .clientId("admin-cli")
                 .grantType("password")
