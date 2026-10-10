@@ -29,13 +29,13 @@ export class AuthService {
       }
     });
   }
-  
+
   isAuthenticated(): KeycloakEventType {
     return KeycloakEventType.AuthSuccess;
-  } 
-  
+  }
+
   getCurrentUser() {
-    return this.http.get<AuthenticatedUser>('http://localhost:8080/auth/me');
+    return this.http.get<AuthenticatedUser>('/api/auth/me');
   }
 
   loadAndNavigate() {
