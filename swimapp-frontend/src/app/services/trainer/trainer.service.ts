@@ -10,10 +10,10 @@ import { UpdateTrainerInfoDto } from '../../interfaces/update-trainer-info-dto';
   providedIn: 'root',
 })
 export class TrainerService {
-  registerUrl = 'http://localhost:8080/trainers/register';
-  profileUrl = 'http://localhost:8080/trainers/me';
-  updateMyProfileUrl = 'http://localhost:8080/trainers/me';
-  getTrainersList = 'http://localhost:8080/trainers';
+  registerUrl = '/api/trainers/register';
+  profileUrl = '/api/trainers/me';
+  updateMyProfileUrl = '/api/trainers/me';
+  getTrainersList = '/api/trainers';
   private http: HttpClient = inject(HttpClient);
 
   getAllTrainers() {
