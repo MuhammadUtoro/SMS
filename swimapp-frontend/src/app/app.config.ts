@@ -1,3 +1,7 @@
+// import Keycloak from 'keycloak-js';
+//import { AuthService } from './services/auth/auth.service';
+import { routes } from './app.routes';
+//import { KeycloakService } from './services/keycloak/keycloak.service';
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -18,16 +22,12 @@ import {
   INCLUDE_BEARER_TOKEN_INTERCEPTOR_CONFIG,
 } from 'keycloak-angular';
 
-import Keycloak from 'keycloak-js';
-import { AuthService } from './services/auth/auth.service';
-import { routes } from './app.routes';
-import { KeycloakService } from './services/keycloak/keycloak.service';
 
 // Configure HttpClientInterceptors - to manage Bearer Token in the HTTP
 // request header. Library (angular-js) doesn't automatically add the Bearer
 // token to request, therefore we need to configure und use interceptors
 const urlCondition = createInterceptorCondition<IncludeBearerTokenCondition>({
-  urlPattern: /^(http:\/\/localhost:8080)(\/.*)?$/i,
+  urlPattern: /^\/api\/.*$/i,
   bearerPrefix: 'Bearer',
 });
 
