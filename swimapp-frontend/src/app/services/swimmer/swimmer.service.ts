@@ -13,49 +13,44 @@ import { SwimmerDetailDto } from '../../interfaces/swimmer-detail-dto';
   providedIn: 'root',
 })
 export class SwimmerService {
-  createSwimmerUrl = 'http://localhost:8080/swimmers';
-  getSwimmersListUrl = 'http://localhost:8080/swimmers';
-  getSwimmerByIdUrl = 'http://localhost:8080/swimmers';
-  updateSwimmerInfoUrl = 'http://localhost:8080/swimmers';
-  updateSwimmerCourseUrl = 'http://localhost:8080/swimmers';
-  deleteSwimmerUrl = 'http://localhost:8080/swimmers';
+  swimmersUrl = '/api/swimmers';
   private http: HttpClient = inject(HttpClient);
 
   createSwimmer(dto: CreateSwimmerDto) {
-    return this.http.post<CreateSwimmerDto>(this.createSwimmerUrl, dto);
+    return this.http.post<CreateSwimmerDto>(this.swimmersUrl, dto);
   }
 
   getSwimmersList(): Observable<SwimmerSummaryDto[]> {
-    return this.http.get<SwimmerSummaryDto[]>(this.getSwimmersListUrl);
+    return this.http.get<SwimmerSummaryDto[]>(this.swimmersUrl);
   }
 
   getSwimmerById(swimmerId: number): Observable<SwimmerDetailDto> {
     return this.http.get<SwimmerDetailDto>(
-      `${this.getSwimmerByIdUrl}/${swimmerId}`,
+      `${this.swimmersUrl}/${swimmerId}`,
     );
   }
 
   updateSwimmerInfo(swimmerId: number, dto: UpdateSwimmerInfoDto) {
     return this.http.put<SwimmerDetailDto>(
-      `${this.updateSwimmerInfoUrl}/${swimmerId}`, dto
+      `${this.swimmersUrl}/${swimmerId}`, dto
     );
   }
 
   updateSwimmerCourse(swimmerId: number, dto: UpdateSwimmerCourseDto) {
     return this.http.patch<SwimmerDetailDto>(
-      `${this.updateSwimmerCourseUrl}/${swimmerId}/course`, dto
+      `${this.swimmersUrl}/${swimmerId}/course`, dto
     );
   }
 
   updateSwimmerLevel(swimmerId: number, dto: UpdateSwimmerLevelDto) {
     return this.http.patch<SwimmerDetailDto>(
-      `${this.updateSwimmerCourseUrl}/${swimmerId}/level`, dto
+      `${this.swimmersUrl}/${swimmerId}/level`, dto
     );
   }
 
   deleteSwimmer(swimmerId: number) {
     return this.http.delete(
-      `${this.deleteSwimmerUrl}/${swimmerId}`
+      `${this.swimmersUrl}/${swimmerId}`
     );
   }
 }
