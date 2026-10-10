@@ -8,22 +8,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LevelService {
-  getLevelsList = 'http://localhost:8080/levels';
-  getLevelByIdUrl = 'http://localhost:8080/levels';
-  createLevelUrl = 'http://localhost:8080/levels'
+  levelsUrl = '/api/levels';
   private http: HttpClient = inject(HttpClient);
 
   getAllLevels() {
-    return this.http.get<LevelSummaryDto[]>(this.getLevelsList);
+    return this.http.get<LevelSummaryDto[]>(this.levelsUrl);
   }
 
   createLevel(dto: CreateLevelDto) {
-    return this.http.post<CreateLevelDto>(this.createLevelUrl, dto);
+    return this.http.post<CreateLevelDto>(this.levelsUrl, dto);
   }
 
   getLevelById(levelId: number): Observable<LevelSummaryDto> {
     return this.http.get<LevelSummaryDto>(
-      `${this.getLevelByIdUrl}/${levelId}`,
+      `${this.levelsUrl}/${levelId}`,
     );
   }
 }
