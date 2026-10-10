@@ -17,3 +17,4 @@ export class Home {
     return this.keycloakService.login();
   }
 }
+
