@@ -10,44 +10,38 @@ import { UpdateCourseTrainerDto } from '../../interfaces/update-course-trainer-d
   providedIn: 'root',
 })
 export class CourseService {
-  createCourseUrl = 'http://localhost:8080/courses';
-  getCoursesListUrl = 'http://localhost:8080/courses';
-  getCourseByIdUrl = 'http://localhost:8080/courses';
-  updateCourseLevelUrl = 'http://localhost:8080/courses';
-  updateCourseTrainerUrl = 'http://localhost:8080/courses';
-  updateCourseInfoUrl = 'http://localhost:8080/courses';
-  deleteCourseUrl = 'http://localhost:8080/courses';
+  coursesUrl = '/api/courses';
   private http: HttpClient = inject(HttpClient);
 
   createCourse(dto: CreateCourseDto) {
-    return this.http.post<CreateCourseDto>(this.createCourseUrl, dto);
+    return this.http.post<CreateCourseDto>(this.coursesUrl, dto);
   }
 
   getAllCourses() {
-    return this.http.get<CourseSummaryDto[]>(this.getCoursesListUrl);
+    return this.http.get<CourseSummaryDto[]>(this.coursesUrl);
   }
 
   getCourseById(courseId: number): Observable<CourseSummaryDto> {
     return this.http.get<CourseSummaryDto>(
-      `${this.getCourseByIdUrl}/${courseId}`,
+      `${this.coursesUrl}/${courseId}`,
     );
   }
 
   updateCourseInfo(courseId: number, dto: UpdateCourseInfoDto) {
     return this.http.put<CourseSummaryDto>(
-      `${this.updateCourseInfoUrl}/${courseId}`, dto
+      `${this.coursesUrl}/${courseId}`, dto
     );
   }
 
   updateCourseTrainer(courseId: number, dto: UpdateCourseTrainerDto) {
     return this.http.patch<CourseSummaryDto>(
-      `${this.updateCourseTrainerUrl}/${courseId}/trainer`, dto
+      `${this.coursesUrl}/${courseId}/trainer`, dto
     )
   }
 
   deleteCourse(courseId: number) {
     return this.http.delete(
-      `${this.deleteCourseUrl}/${courseId}`
+      `${this.coursesUrl}/${courseId}`
     );
   }
 }
