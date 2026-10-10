@@ -11,10 +11,10 @@ import { UpdateParentInfoDto } from '../../interfaces/update-parent-info-dto';
   providedIn: 'root',
 })
 export class ParentService {
-  registerUrl = 'http://localhost:8080/parents/register';
-  profileUrl = 'http://localhost:8080/parents/me';
-  updateProfileUrl = 'http://localhost:8080/parents/me';
-  getMySwimmersUrl = 'http://localhost:8080/parents/me/swimmers';
+  registerUrl = '/api/parents/register';
+  profileUrl = '/api/parents/me';
+  updateProfileUrl = '/api/parents/me';
+  getMySwimmersUrl = '/api/parents/me/swimmers';
   private http: HttpClient = inject(HttpClient);
 
   registerParent(dto: ParentRegistrationRequestDTO) {
