@@ -67,7 +67,6 @@
           <p>
             <strong> {{ course.courseName }}</strong>
             <br>
-            {{ course.levelName }}
             . {{ course.courseDay }}
             . {{ course.courseTime }}
           </p>
@@ -84,17 +83,15 @@
         </header>
         <div>
           @for (level of levels().slice(0, 3); track level.levelId) {
-
           <p>
             <strong> {{ level.levelId }}</strong>
             <br>
             . {{ level.levelName }}
           </p>
           }
-
         </div>
         <footer>
-          <a matButton="tonal" routerLink="level-list">View all levels</a>
+          <a matButton="tonal" routerLink="/level-list">View all levels</a>
           <a matButton="tonal" routerLink="/levels">Add new level</a>
         </footer>
       </article>

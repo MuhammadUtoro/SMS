@@ -34,6 +34,7 @@ export class AdminDashboard implements OnInit {
     this.getSwimmersList();
     this.getCoursesList();
     this.getTrainersList();
+    this.getLevelsList();
   }
 
 
