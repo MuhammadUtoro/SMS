@@ -5,9 +5,11 @@ import { CourseService } from '../../../services/course/course.service';
 import { SwimmerSummaryDto } from '../../../interfaces/swimmer-summary-dto';
 import { CourseSummaryDto } from '../../../interfaces/course-summary-dto';
 import { TrainerSummaryDto } from '../../../interfaces/trainer-summary-dto';
+import { LevelSummaryDto } from '../../../interfaces/level-summary-dto';
 import { TrainerService } from '../../../services/trainer/trainer.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { LevelService } from '../../../services/level/level.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -20,11 +22,13 @@ export class AdminDashboard implements OnInit {
   private courseService: CourseService = inject(CourseService);
   private trainerService: TrainerService = inject(TrainerService);
   private authService: AuthService = inject(AuthService);
+  private levelService: LevelService = inject(LevelService);
 
   user = this.authService.user;
   swimmers = signal<SwimmerSummaryDto[]>([]);
   courses = signal<CourseSummaryDto[]>([]);
   trainers = signal<TrainerSummaryDto[]>([]);
+  levels = signal<LevelSummaryDto[]>([]);
 
   ngOnInit(): void {
     this.getSwimmersList();
@@ -62,6 +66,17 @@ export class AdminDashboard implements OnInit {
       },
       error: (error) => {
         console.log("Failed to load trainers!", error);
+      }
+    });
+  }
+
+  getLevelsList(): void {
+    this.levelService.getAllLevels().subscribe({
+      next: (levels) => {
+          this.levels.set(levels);
+      },
+      error: (error) => {
+        console.log("Failed to load levels!", error);
       }
     });
   }

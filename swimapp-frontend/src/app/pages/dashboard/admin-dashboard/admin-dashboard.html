@@ -30,11 +30,11 @@
         </header>
         <div>
           @for (swimmer of swimmers().slice(0, 3); track swimmer.swimmerId) {
-            <p>
-              {{ swimmer.swimmerId }}.
-              {{ swimmer.firstName }} {{ swimmer.lastName }}:
-              {{ swimmer.levelName }}
-            </p>
+          <p>
+            {{ swimmer.swimmerId }}.
+            {{ swimmer.firstName }} {{ swimmer.lastName }}:
+            {{ swimmer.levelName }}
+          </p>
           }
         </div>
         <footer>
@@ -47,15 +47,15 @@
         </header>
         <div>
           @for (trainer of trainers().slice(0, 3); track trainer.trainerId) {
-            <p>
-              {{ trainer.trainerId }}.
-              {{ trainer.firstName }} {{ trainer.lastName }}
-          }
+          <p>
+            {{ trainer.trainerId }}.
+            {{ trainer.firstName }} {{ trainer.lastName }}
+            }
         </div>
         <footer>
           <a matButton="tonal" routerLink="/trainer-list">View all trainers</a>
           <a matButton="tonal" routerLink="/trainers/register">Add new
-          trainer</a>
+            trainer</a>
         </footer>
       </article>
       <article class="management-card">
@@ -64,19 +64,35 @@
         </header>
         <div>
           @for (course of courses().slice(0, 3); track course.courseId) {
-            <p>
-              <strong> {{ course.courseName }}</strong>
-              <br>
-              {{ course.levelName }}
-              . {{ course.courseDay }}
-              . {{ course.courseTime }}
-            </p>
+          <p>
+            <strong> {{ course.courseName }}</strong>
+            <br>
+            {{ course.levelName }}
+            . {{ course.courseDay }}
+            . {{ course.courseTime }}
+          </p>
           }
         </div>
         <footer>
           <a matButton="tonal" routerLink="/course-list">View all courses</a>
           <a matButton="tonal" routerLink="/courses">Add new course</a>
         </footer>
+      </article>
+      <article class="management-card">
+        <header>
+          <h3>Manage Levels</h3>
+        </header>
+        <div>
+          @for (level of levels().slice(0, 3); track level.levelId) {
+
+          <p>
+            <strong> {{ level.levelId }}</strong>
+            <br>
+            . {{ level.levelName }}
+          </p>
+          }
+
+        </div>
       </article>
     </div>
   </section>
