@@ -48,7 +48,7 @@ services:
       KC_DB_USERNAME: keycloak
       KC_DB_PASSWORD: keycloak
       KC_HEALTH_ENABLED: "true"
-      KC_HOSTNAME: http://192.168.0.126:8083/auth
+      KC_HOSTNAME: https://192.168.0.126:8443/auth
       KC_HTTP_RELATIVE_PATH: /auth
       KC_PROXY_HEADERS: xforwarded
       KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "true"
@@ -90,8 +90,12 @@ services:
     build:
       context: ./swimapp-frontend
       dockerfile: Dockerfile
+    volumes:
+      - /home/dio/Documents/swimapp/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
+      - /home/dio/Documents/swimapp/privateKey.pem:/etc/nginx/ssl/privateKey.pem:ro
     ports:
       - "8083:80"
+      - "8443:443"
 
 volumes:
   pgdata:
