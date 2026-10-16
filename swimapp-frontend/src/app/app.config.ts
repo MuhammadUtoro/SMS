@@ -41,7 +41,7 @@ export const appConfig: ApplicationConfig = {
     UserActivityService,
     provideKeycloak({
       config: {
-        url: 'http://192.168.0.126:8083/auth',
+        url: 'https://192.168.0.126:8443/auth',
         realm: 'dio-project',
         clientId: 'swimapp',
       },
