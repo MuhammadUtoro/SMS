@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+    paths:
+      - 'swimapp-frontend/**'
+      - '.github/workflows/frontend-ci.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
