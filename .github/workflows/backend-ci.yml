@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-    paths: 
+    paths:
       - 'swimapp-backend/**'
       - '.github/workflows/backend-ci.yml'
 
@@ -12,21 +12,35 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: testpassword
+          POSTGRES_DB: swimapp_test
+        ports:
+          - 5435:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d swimapp_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     env:
-      KEYCLOAK_ADMIN_CLIENT_REALM: ${{ secrets.KEYCLOAK_ADMIN_CLIENT_REALM }}
-      KEYCLOAK_ADMIN_CLIENT_ID: ${{ secrets.KEYCLOAK_ADMIN_CLIENT_ID }}
-    
+      DATASOURCE_PASSWORD: testpassword
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Set up Java
         uses: actions/setup-java@v4
-        with: 
+        with:
           distribution: temurin
           java-version: '21'
           cache: maven
-      
+
       - name: Build Quarkus Backend
         working-directory: swimapp-backend
         run: ./mvnw package
