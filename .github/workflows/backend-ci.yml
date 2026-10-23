@@ -12,6 +12,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      KEYCLOAK_ADMIN_CLIENT_REALM: ${{ secrets.KEYCLOAK_ADMIN_CLIENT_REALM }}
+      KEYCLOAK_ADMIN_CLIENT_ID: ${{ secrets.KEYCLOAK_ADMIN_CLIENT_ID }}
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
