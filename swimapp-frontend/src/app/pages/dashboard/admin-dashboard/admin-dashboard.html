@@ -67,8 +67,8 @@
           <p>
             <strong> {{ course.courseName }}</strong>
             <br>
-            . {{ course.courseDay }}
-            . {{ course.courseTime }}
+              {{ course.courseDay }}
+              {{ course.courseTime }}
           </p>
           }
         </div>
@@ -84,9 +84,7 @@
         <div>
           @for (level of levels().slice(0, 3); track level.levelId) {
           <p>
-            <strong> {{ level.levelId }}</strong>
-            <br>
-            . {{ level.levelName }}
+            <strong>{{ level.levelId }} . {{ level.levelName }}</strong>
           </p>
           }
         </div>
