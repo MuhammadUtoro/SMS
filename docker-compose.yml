@@ -6,9 +6,9 @@ services:
     ports:
       - "5435:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES_DB: swimapp
+      POSTGRES_USER: ${SWIMAPP_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${SWIMAPP_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${SWIMAPP_POSTGRES_DB}
     volumes:
       - pgdata:/var/lib/postgresql
       - ./db/init:/docker-entrypoint-initdb.data
@@ -24,9 +24,9 @@ services:
     image: postgres:18
     container_name: postgres-keycloak
     environment:
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloak
-      POSTGRES_DB: keycloak
+      POSTGRES_USER: ${KEYCLOAK_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${KEYCLOAK_POSTGRES_DB}
     volumes:
       - pgdata_keycloak:/var/lib/postgresql
     healthcheck:
@@ -39,16 +39,16 @@ services:
   keycloak:
     image: keycloak/keycloak:latest
     container_name: swimapp-keycloak
-    command: start-dev --import-realm
+    command: start --import-realm
     environment:
-      KC_BOOTSTRAP_ADMIN_USERNAME: admin
-      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres-keycloak:5432/keycloak
-      KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: keycloak
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_BOOTSTRAP_ADMIN_USERNAME}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_BOOTSTRAP_ADMIN_PASSWORD}
+      KC_DB: ${KC_DB}
+      KC_DB_URL: ${KC_DB_URL}
+      KC_DB_USERNAME: ${KC_DB_USERNAME}
+      KC_DB_PASSWORD: ${KC_DB_PASSWORD}
       KC_HEALTH_ENABLED: "true"
-      KC_HOSTNAME: https://192.168.0.126:8443/auth
+      KC_HOSTNAME: ${KC_HOSTNAME}
       KC_HTTP_RELATIVE_PATH: /auth
       KC_PROXY_HEADERS: xforwarded
       KC_HOSTNAME_BACKCHANNEL_DYNAMIC: "true"
@@ -91,8 +91,8 @@ services:
       context: ./swimapp-frontend
       dockerfile: Dockerfile
     volumes:
-      - /home/dio/Documents/swimapp/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
-      - /home/dio/Documents/swimapp/privateKey.pem:/etc/nginx/ssl/privateKey.pem:ro
+      - ${SSL_FULLCHAIN_PATH}:/etc/nginx/ssl/fullchain.pem:ro
+      - ${SSL_PRIVATEKEY_PATH}:/etc/nginx/ssl/privateKey.pem:ro
     ports:
       - "8083:80"
       - "8443:443"
