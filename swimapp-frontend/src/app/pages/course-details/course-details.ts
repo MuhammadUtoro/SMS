@@ -3,7 +3,6 @@ import { CourseService } from '../../services/course/course.service';
 import { CourseSummaryDto } from '../../interfaces/course-summary-dto';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { Swimmer } from '../../components/swimmer/swimmer';
 
 @Component({
   selector: 'app-course-details',
