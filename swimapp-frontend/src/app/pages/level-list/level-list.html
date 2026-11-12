@@ -1,18 +1,39 @@
-<div class="level-list-container">
-  @for (level of levels(); track level.levelId) {
-    <ol>
-      <h3>
-        {{ level.levelName }}
-      </h3>
-      <ul>
-        @for (requirement of level.requirements; track requirement.requirementId) {
-          <li>
-            <a [routerLink]="['/level-requirements', requirement.requirementId]">{{ requirement.requirement }}</a>
-            <button matButton="tonal" (click)="deleteRequirement(requirement.requirementId)">Delete</button>
-          </li>
+<main class="level-list-container">
+  <section class="level-table">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Level Name</th>
+          <th>Requirements</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (level of levels(); track level.levelId) {
+          <tr>
+            <td>{{ level.levelId }}</td>
+            <td>{{ level.levelName }}</td>
+            <td>
+              @for (requirement of level.requirements; track requirement.requirementId) {
+                <div>
+                  <a [routerLink]="['/level-requirements', requirement.requirementId]">
+                    {{ requirement.requirement }}
+                  </a>
+                </div>
+              }
+            </td>
+            <td class="actions">
+              @for (requirement of level.requirements; track requirement.requirementId) {
+                <button matButton="tonal" (click)="deleteRequirement(requirement.requirementId)">
+                  Delete
+                </button>
+              }
+            </td>
+          </tr>
         }
-      </ul>
-        <a class="add-requirement" [routerLink]="['/levels', level.levelId, 'add-requirement']">Add requirement</a>
-    </ol>
-  }
-</div>
+      </tbody>
+    </table>
+
+  </section>
+</main>
