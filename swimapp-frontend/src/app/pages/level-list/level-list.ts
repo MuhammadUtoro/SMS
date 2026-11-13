@@ -5,12 +5,14 @@ import { LevelRequirementDto } from '../../interfaces/level-requirement-dto';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { LevelRequirementService } from '../../services/level-requirement/level-requirement.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-level-list',
   imports: [
     RouterLink,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   templateUrl: './level-list.html',
   styleUrl: './level-list.css',
